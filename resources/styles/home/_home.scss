@@ -1,0 +1,51 @@
+.home {
+    &__how-to {
+        & > * {
+            display: inline-block;
+        }
+    }
+
+    &__type-select {
+        display: flex;
+    }
+
+    &__image-button {
+        position: relative;
+        width: 100%;
+        height: 640px;
+
+        .type-content {
+            color: white;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+        }
+
+        .center {
+            top: 50%;
+            border: 1px solid white;
+            padding: 16px 64px;
+        }
+
+        .bottom {
+            top: 65%;
+        }
+
+        div.overlay {
+            transition: 0.3s;
+            &:hover {
+                background-color: rgba(200, 200, 200, 0.2);
+            }
+        }
+    }
+
+    &__info {
+        margin: 36px 72px 72px;
+    }
+
+    &__intro {
+        white-space: pre-line;
+        line-height: 32px;
+    }
+}
