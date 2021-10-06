@@ -5,7 +5,7 @@
 <style>
     .footer {
         width: 100%;
-        padding: 15px;
+        padding: 15px 0;
         background-color: black;
         color: white;
         text-align: center;
