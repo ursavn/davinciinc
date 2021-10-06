@@ -1,0 +1,22 @@
+.login {
+    height: 100vh;
+    background: #d2d6de;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__box {
+        width: 35%;
+        background: #ffffff;
+        padding: 20px 35px;
+    }
+
+    &__footer {
+        padding-top: 10px;
+        text-align: end;
+    }
+
+    &__error {
+        padding-left: 15px;
+    }
+}
