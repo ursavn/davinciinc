@@ -7,14 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
     <title>PetFlier</title>
 </head>
 
 <body class="c-app">
-    @include('includes.header')
-    @include('includes.partials.logo')
+    <div class="c-wrapper">
+        @include('includes.header')
+        @include('includes.partials.logo')
         <div class="c-body">
             <main class="c-main">
                 <div class="container-fluid">
@@ -22,7 +23,8 @@
                 </div>
             </main>
         </div>
-    @include('includes.footer')
+        @include('includes.footer')
+    </div>
 </body>
 
 </html>
