@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\TemplateController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,4 +18,10 @@ use App\Http\Controllers\TemplateController;
 Route::get('/', function () {
     return view('home');
 });
+
 Route::get('/template/{id}', [TemplateController::class, 'show']);
+
+Route::get('admin/login', [LoginController::class, 'getLogin'])->name('getLogin');
+Route::post('admin/login', [LoginController::class, 'postLogin'])->name('postLogin');
+Route::get('admin/logout', [LoginController::class, 'getLogout']);
+
