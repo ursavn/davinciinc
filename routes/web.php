@@ -20,6 +20,7 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/select-template', [TemplateController::class, 'getAllTemplates'])->name('select-template');
+Route::get('/select-template/{id}', [TemplateController::class, 'showTemplate'])->name('show-template');
 
 Route::get('admin/login', [AuthController::class, 'getLogin'])->name('get-login');
 Route::post('admin/login', [AuthController::class, 'postLogin'])->name('post-login');
