@@ -1,0 +1,44 @@
+div.user-register {
+    height: 100vh;
+    background: #d2d6de;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__box {
+        width: 35%;
+        background: #ffffff;
+        padding: 25px 35px;
+    }
+
+    &__avatar {
+        width: 110px;
+        height: 110px;
+        background: #eeee;
+        border: 2px solid #605858;
+        border-radius: 50%;
+
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+    }
+}
+
+label.user-register__avatar-label {
+    position: relative;
+    top: -38px;
+    left: 41px;
+    width: 30px;
+    height: 30px;
+    background: #605858;
+    border-radius: 50%;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+label.user-register__avatar-label:hover {
+    background: #8c8686;
+}

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\TemplateController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +21,9 @@ Route::get('/', function () {
 
 Route::get('/select-template', [TemplateController::class, 'getAllTemplates'])->name('select-template');
 
-Route::get('admin/login', [LoginController::class, 'getLogin'])->name('getLogin');
-Route::post('admin/login', [LoginController::class, 'postLogin'])->name('postLogin');
-Route::get('admin/logout', [LoginController::class, 'getLogout']);
+Route::get('admin/login', [AuthController::class, 'getLogin'])->name('get-login');
+Route::post('admin/login', [AuthController::class, 'postLogin'])->name('post-login');
+Route::get('admin/logout', [AuthController::class, 'getLogout']);
+
+Route::get('admin/register', [AuthController::class, 'getRegister'])->name('get-register');
+Route::post('admin/register', [AuthController::class, 'postRegister'])->name('post-register');
