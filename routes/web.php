@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -19,8 +20,8 @@ Route::get('/', function () {
     return view('pages.users.home');
 })->name('home');
 
-Route::get('/select-template', [TemplateController::class, 'getAllTemplates'])->name('select-template');
-Route::get('/select-template/{id}', [TemplateController::class, 'showTemplate'])->name('show-template');
+Route::get('/templates', [TemplateController::class, 'getAllTemplates'])->name('select-template');
+Route::get('/templates/{id}', [TemplateController::class, 'showTemplate'])->name('show-template');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::name('auth.')->group(function () {
@@ -31,4 +32,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('register', [AuthController::class, 'getRegister'])->name('get-register');
         Route::post('register', [AuthController::class, 'postRegister'])->name('post-register');
     });
+
+
+    // Route::get('list', [UserController::class, 'getUsersList'])->name('list-users');
+    // Route::get('any-data', [UserController::class, 'anyData'])->name('any-data');
 });
