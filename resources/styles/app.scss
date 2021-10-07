@@ -1,5 +1,8 @@
-@import "home/home.scss";
-@import "login/login.scss";
+@import "home/_home.scss";
+@import "select-template/_select-template.scss";
+@import "shared/overlay.scss";
+@import "login/_login.scss";
+@import "select-template/_detail.scss";
 
 .c-app {
     position: relative;
