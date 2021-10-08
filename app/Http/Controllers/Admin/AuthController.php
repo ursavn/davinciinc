@@ -62,7 +62,7 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($login)) {
-            return redirect('admin');
+            return redirect('admin/templates');
         } else {
             return redirect()->back()->with('status', 'Email address or password is incorrect.');
         }

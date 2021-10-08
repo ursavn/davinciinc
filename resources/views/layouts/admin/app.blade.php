@@ -35,21 +35,6 @@
         </div>
         @include('includes.footer')
     </div>
-
-    <script>
-        $(function () {
-            $('.alert').alert()
-        })
-
-        function confirmDelete() {
-            var result = confirm('Are you sure want to delete?');
-
-            if (result) {
-                return true;
-            }
-            return false;
-        }
-    </script>
 </body>
 
 </html>
