@@ -41,7 +41,7 @@ class AuthController extends Controller
 
         $this->user->create($data);
 
-        return redirect()->route('pages.admin.get-login');
+        return redirect()->route('admin.auth.get-login');
     }
 
     public function getLogin()
@@ -70,6 +70,6 @@ class AuthController extends Controller
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->route('pages.admin.get-login');
+        return redirect()->route('admin.auth.get-login');
     }
 }

@@ -16,10 +16,9 @@
 <body class="c-app">
     <div class="c-wrapper">
         @include('includes.header')
-        @include('includes.partials.logo')
         <div class="c-body">
             <main class="c-main">
-                <div class="container-fluid">
+                <div class="container">
                     @yield('content')
                 </div>
             </main>

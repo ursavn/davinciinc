@@ -27,13 +27,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::name('auth.')->group(function () {
         Route::get('login', [AuthController::class, 'getLogin'])->name('get-login');
         Route::post('login', [AuthController::class, 'postLogin'])->name('post-login');
-        Route::get('logout', [AuthController::class, 'getLogout']);
+        Route::get('logout', [AuthController::class, 'getLogout'])->name('get-logout');
 
         Route::get('register', [AuthController::class, 'getRegister'])->name('get-register');
         Route::post('register', [AuthController::class, 'postRegister'])->name('post-register');
     });
 
 
-    // Route::get('list', [UserController::class, 'getUsersList'])->name('list-users');
-    // Route::get('any-data', [UserController::class, 'anyData'])->name('any-data');
+    Route::middleware('auth')->group(function () {
+        Route::resource('users', UserController::class);
+        Route::get('list', [UserController::class, 'getUsersList'])->name('list-users');
+        Route::get('any-data', [UserController::class, 'anyData'])->name('any-data');
+    });
 });
