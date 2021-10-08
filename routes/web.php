@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\TemplatesController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
@@ -41,5 +42,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('categories', CategoryController::class);
         Route::get('any-data', [CategoryController::class, 'anyData'])->name('categories.any-data');
+
+        Route::resource('templates', TemplatesController::class);
+        Route::get('any-data', [TemplatesController::class, 'anyData'])->name('templates.any-data');
     });
 });

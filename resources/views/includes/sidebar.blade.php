@@ -13,6 +13,10 @@
                 <i class="fas fa-th-list"></i><a href="{{ route('admin.categories.index') }}">Categories list</a>
             </li>
 
+            <li class="{{ Route::is('admin.templates.index') ? 'active' : '' }}">
+                <i class="fas fa-th-list"></i><a href="{{ route('admin.templates.index') }}">Templates list</a>
+            </li>
+
             <li>
                 <i class="fas fa-sign-out-alt"></i><a href="{{ route('admin.auth.get-logout') }}">Log out</a>
             </li>
