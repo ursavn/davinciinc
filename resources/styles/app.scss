@@ -7,6 +7,7 @@
 
 .c-app {
     position: relative;
+    height: 100vh;
     margin: 0;
 }
 
@@ -14,4 +15,10 @@
     max-width: 1320px;
     min-width: 1320px;
     margin: 0 auto;
+}
+
+.c-wrapper--with-navbar {
+    margin-left: 200px;
+    height: 100%;
+    position: relative;
 }
