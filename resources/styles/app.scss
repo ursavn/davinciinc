@@ -4,14 +4,32 @@
 @import "login/_login.scss";
 @import "select-template/_detail.scss";
 @import "user-register/_user-register.scss";
+@import "admin-app/admin-app";
 
 .c-app {
     position: relative;
+    // height: 100vh;
+    min-height: 100vh;
     margin: 0;
 }
 
-.c-wrapper {
-    max-width: 1320px;
-    min-width: 1320px;
+div.c-wrapper {
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
+    height: 100%;
+}
+
+div.c-wrapper .c-body {
+    flex: 1;
+}
+
+div.c-wrapper--with-navbar {
+    margin-left: 200px;
+    height: 100vh;
+    position: relative;
+}
+
+div.c-wrapper--with-navbar .c-body {
+    overflow: auto;
 }

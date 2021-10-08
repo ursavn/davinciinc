@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryRequests\CreateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
-    protected $dirView = 'admin.categories.';
+    protected $dirView = 'pages.admin.categories.';
     protected $category;
 
     public function __construct (Category $category)
@@ -45,13 +47,13 @@ class CategoryController extends Controller
             })
             ->addColumn('action', function ($category) {
                 return '<div class="d-flex">
-                            <a href="" class="btn btn-sm btn-info mr-1">
+                            <a href="'. route('admin.categories.edit', $category) .'" class="btn btn-sm btn-info mr-1">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form method="POST" action="'. route('admin.categories.destroy', $category) .'"  >
+                            <form method="POST" action="'. route('admin.categories.destroy', $category) .'">
                                 <input type="hidden" name="_method" value="DELETE">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-sm btn-danger btn-delete" onClick="return confirmDelete()">
+                                <button type="submit" class="btn btn-sm btn-danger" onClick="return confirmDelete()">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </form>
@@ -68,7 +70,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+
+        return view($this->dirView . 'create');
     }
 
     /**
@@ -77,9 +80,15 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        //
+        $data = $request->only(['name', 'description']);
+
+        $data['created_by'] = Auth::user()->id;
+
+        Category::create($data);
+
+        return view($this->dirView . 'index')->with("success", "Create success.");
     }
 
     /**
@@ -101,7 +110,11 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+
+        return view($this->dirView . 'edit', [
+            'category' => $category
+        ]);
     }
 
     /**
@@ -111,9 +124,21 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreateRequest $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        if (!$category) {
+            return view($this->dirView . 'index')->with("error", "Not found data.");
+        }
+
+        $data = $request->only(['name', 'description']);
+
+        $data['updated_by'] = Auth::user()->id;
+
+        $category->update($data);
+
+        return view($this->dirView . 'index')->with("success", "Updated success.");
     }
 
     /**
@@ -124,6 +149,14 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        return view($this->dirView . 'index');
+        $category = Category::find($id);
+
+        if (!$category) {
+            return view($this->dirView . 'index')->with("error", "Not found data.");
+        }
+
+        $category->delete();
+
+        return view($this->dirView . 'index')->with("success", "Delete success.");
     }
 }

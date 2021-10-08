@@ -1,18 +1,28 @@
-@extends('layouts.app')
+@extends('layouts.admin.app')
 
 @section('content')
     <div class="categories-list">
-        <div class="categories-list__header d-flex justify-content-between mt-3 mb-3">
-            <div class="categories-list__title">
-                <h2>Categories List</h2>
-            </div>
-            <div class="categories-list__create">
-                <button type="button" class="btn btn-xs btn-success categories_list--create-btn" id="opener">
-                    <i class="fa fa-plus"></i> Create
-                </button>
-            </div>
+        <div class="categories-list__header c-header">
+            <h2>Categories List</h2>
         </div>
-        <div class="categories-list__content">
+        <div class="categories-list__content c-content">
+            <div class="categories-list__create text-end mb-3">
+                <a href="{{ route('admin.categories.create') }}" class="btn btn-xs btn-success">
+                    <i class="fa fa-plus"></i> Create
+                </a>
+            </div>
+
+            @if (session('success'))
+                <div class="alert alert-success alert-block">
+                    <strong>{{ session('success') }}</strong>
+                </div>
+            @endif
+            @if (session('error'))
+                <div class="alert alert-success alert-block">
+                    <strong>{{ session('error') }}</strong>
+                </div>
+            @endif
+
             <div class="categories-list__table">
                 <table class="table table-bordered" id="categories-table">
                     <thead>
@@ -51,29 +61,20 @@
                 </div>
             </div>
         </div>
-
-        <div id="dialog" title="Basic dialog">
-            <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the &apos;x&apos; icon.</p>
-        </div>
     </div>
 @endsection
 
 <style>
-    .ui-widget-header,.ui-state-default, ui-button{
-        background:crimson;
-        border: 2px solid brown;
-        color: white;
-        font-weight: bold;
-    }
+
 </style>
 
 @push('scripts')
     <script>
-
-
+        $(document).ready(function() {
             $('#categories-table').DataTable({
                 processing: true,
                 serverSide: true,
+                responsive: true,
                 ajax: '{!! route('admin.categories.any-data') !!}',
                 columns: [
                     { data: 'id', name: 'id' },

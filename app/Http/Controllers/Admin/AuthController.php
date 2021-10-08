@@ -21,7 +21,7 @@ class AuthController extends Controller
     public function getRegister()
     {
 
-        return view('admin.register');
+        return view('pages.admin.register');
     }
 
     public function postRegister(RegisterRequest $request)
@@ -42,7 +42,7 @@ class AuthController extends Controller
 
         $this->user->create($data);
 
-        return redirect()->route('get-login');
+        return redirect()->route('admin.auth.get-login');
     }
 
     public function getLogin()
@@ -50,7 +50,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect('admin');
         } else {
-            return view('admin.login');
+            return view('pages.admin.login');
         }
     }
 
@@ -71,6 +71,6 @@ class AuthController extends Controller
     public function getLogout()
     {
         Auth::logout();
-        return redirect()->route('get-login');
+        return redirect()->route('admin.auth.get-login');
     }
 }

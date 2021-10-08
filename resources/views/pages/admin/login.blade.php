@@ -27,7 +27,7 @@
                         <li class="text-danger"> {{ session('status') }}</li>
                     </ul>
                 @endif
-                <form action="{{ route('post-login') }}" method="post">
+                <form action="{{ route('admin.auth.post-login') }}" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">
                         <input type="text" class="form-control" name="email" placeholder="Email">
@@ -39,7 +39,7 @@
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                     </div>
                     <div class="login__footer">
-                        <a href="{{ route('get-register') }}">Register new account</a>
+                        <a href="{{ route('admin.auth.get-register') }}">Register new account</a>
                     </div>
                 </form>
             </div>

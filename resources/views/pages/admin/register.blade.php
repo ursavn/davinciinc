@@ -16,7 +16,7 @@
     <div class="user-register__box">
         <div class="user-register__title text-center mb-4"><h2>Register</h2></div>
         <div class="user-register__content">
-            <form action="{{ route('post-register') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('admin.auth.post-register') }}" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group d-flex flex-column align-items-center mb-0">
                     <div class="user-register__avatar">
