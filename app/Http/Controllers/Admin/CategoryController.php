@@ -12,12 +12,7 @@ use Yajra\DataTables\Facades\DataTables;
 class CategoryController extends Controller
 {
     protected $dirView = 'pages.admin.categories.';
-    protected $category;
 
-    public function __construct (Category $category)
-    {
-        $this->category = $category;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -46,18 +41,9 @@ class CategoryController extends Controller
                 return $category->updater ? $category->updater->username : '';
             })
             ->addColumn('action', function ($category) {
-                return '<div class="d-flex">
-                            <a href="'. route('admin.categories.edit', $category) .'" class="btn btn-sm btn-info mr-1">
-                                <i class="fa fa-edit"></i>
-                            </a>
-                            <form method="POST" action="'. route('admin.categories.destroy', $category) .'">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-sm btn-danger" onClick="return confirmDelete()">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>
-                        </div>';
+                return '<a href="'. route('admin.categories.edit', $category) .'" class="btn btn-sm btn-info mr-1">
+                            <i class="fa fa-edit"></i>
+                        </a>';
             })
             ->rawColumns(['creator', 'updated_by', 'action'])
             ->make(true);
@@ -149,14 +135,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        $category = Category::find($id);
-
-        if (!$category) {
-            return view($this->dirView . 'index')->with("error", "Not found data.");
-        }
-
-        $category->delete();
-
-        return view($this->dirView . 'index')->with("success", "Delete success.");
+        //
     }
 }
