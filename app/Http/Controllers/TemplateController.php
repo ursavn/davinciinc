@@ -8,8 +8,7 @@ class TemplateController extends Controller
 {
     function getAllTemplates()
     {
-        // TODO: get templates from db
-        return view('select-template.index', [
+        return view('pages.users.template.index', [
             'templates' => [1, 2, 3, 4, 5, 6, 7, 8]
         ]);
     }
@@ -19,6 +18,6 @@ class TemplateController extends Controller
         // demo
         $template = file_get_contents('storage/template/meo.html');
 
-        return view('select-template.show', ['template' => $template]);
+        return view('pages.users.template.show', ['template' => $template]);
     }
 }

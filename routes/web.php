@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
@@ -16,15 +17,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('pages.users.home');
 })->name('home');
 
-Route::get('/select-template', [TemplateController::class, 'getAllTemplates'])->name('select-template');
-Route::get('/select-template/{id}', [TemplateController::class, 'showTemplate'])->name('show-template');
+Route::get('/templates', [TemplateController::class, 'getAllTemplates'])->name('select-template');
+Route::get('/templates/{id}', [TemplateController::class, 'showTemplate'])->name('show-template');
 
-Route::get('admin/login', [AuthController::class, 'getLogin'])->name('get-login');
-Route::post('admin/login', [AuthController::class, 'postLogin'])->name('post-login');
-Route::get('admin/logout', [AuthController::class, 'getLogout']);
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::name('auth.')->group(function () {
+        Route::get('login', [AuthController::class, 'getLogin'])->name('get-login');
+        Route::post('login', [AuthController::class, 'postLogin'])->name('post-login');
+        Route::get('logout', [AuthController::class, 'getLogout']);
 
-Route::get('admin/register', [AuthController::class, 'getRegister'])->name('get-register');
-Route::post('admin/register', [AuthController::class, 'postRegister'])->name('post-register');
+        Route::get('register', [AuthController::class, 'getRegister'])->name('get-register');
+        Route::post('register', [AuthController::class, 'postRegister'])->name('post-register');
+    });
+
+
+    // Route::get('list', [UserController::class, 'getUsersList'])->name('list-users');
+    // Route::get('any-data', [UserController::class, 'anyData'])->name('any-data');
+});
