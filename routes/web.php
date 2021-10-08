@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\TemplateController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,11 @@ Route::get('admin/logout', [AuthController::class, 'getLogout']);
 
 Route::get('admin/register', [AuthController::class, 'getRegister'])->name('get-register');
 Route::post('admin/register', [AuthController::class, 'postRegister'])->name('post-register');
+
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::prefix('categories')->name('categories.')->group(function () {
+        Route::get('/', [CategoryController::class, 'index'])->name('index');
+        Route::get('any-data', [CategoryController::class, 'anyData'])->name('any-data');
+        Route::delete('/{id}', [CategoryController::class, 'destroy'])->name('destroy');
+    });
+});
