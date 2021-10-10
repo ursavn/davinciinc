@@ -1,0 +1,27 @@
+div.c-wrapper .c-body {
+    padding: 20px;
+
+    .c-main {
+        border: 1px solid #dbd2d2ee;
+        border-radius: 5px;
+        padding: 20px 10px;
+
+        .c-header {
+            border-bottom: 1px solid #eeee;
+        }
+
+        .c-content {
+            padding: 20px 0 10px;
+        }
+
+        .c-actions {
+            text-align: end;
+            border-top: 1px solid #eeee;
+            padding-top: 20px;
+
+            a, button {
+                min-width: 80px;
+            }
+        }
+    }
+}
