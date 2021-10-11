@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\TemplateController;
-use App\Http\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,10 +34,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('register', [AuthController::class, 'postRegister'])->name('post-register');
     });
 
-
     Route::middleware('auth')->group(function () {
         Route::resource('users', UserController::class);
         Route::get('list', [UserController::class, 'getUsersList'])->name('list-users');
         Route::get('any-data', [UserController::class, 'anyData'])->name('any-data');
+
+        Route::resource('categories', CategoryController::class);
+        Route::get('any-data', [CategoryController::class, 'anyData'])->name('categories.any-data');
     });
 });

@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\AuthRequests\LoginRequest;
 use App\Http\Requests\AuthRequests\RegisterRequest;
 use App\Models\User;
@@ -61,7 +62,7 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($login)) {
-            return redirect('admin');
+            return redirect('admin/templates');
         } else {
             return redirect()->back()->with('status', 'Email address or password is incorrect.');
         }

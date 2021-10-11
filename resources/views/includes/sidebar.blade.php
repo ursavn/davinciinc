@@ -5,8 +5,8 @@
             <li class="{{ Route::is('admin.users.index') ? 'active' : '' }}">
                 <i class="fas fa-th-list"></i><a href="{{ route('admin.users.index') }}">Users list</a>
             </li>
-            <li>
-                <i class="fas fa-th-list"></i><a href="{{ route('admin.users.index') }}">Temp 1</a>
+            <li class="{{ Route::is('admin.categories.index') ? 'active' : '' }}">
+                <i class="fas fa-th-list"></i><a href="{{ route('admin.categories.index') }}">Categories list</a>
             </li>
             <li>
                 <i class="fas fa-th-list"></i><a href="{{ route('admin.users.index') }}">Temp 2</a>
@@ -21,65 +21,67 @@
 </div>
 
 @push('scripts')
-<script>
-    $(document).ready(function() {
-        $('#nav ul li').click(function(event) {
-            $(this).children('a')[0].click();
-        })
-    });
-</script>
+    <script>
+        $(document).ready(function() {
+            $('#nav ul li').click(function(event) {
+                $(this).children('a')[0].click();
+            })
+        });
+    </script>
 @endpush
 
 @push('style')
-<style>
-    div.sidebar {
-        margin: 0;
-        padding: 0;
-        width: 250px;
-        background-color: #f7f7f7;
-        position: fixed;
-        height: 100%;
-        overflow: auto;
-        font-weight: bold;
-    }
+    <style>
+        div.sidebar {
+            margin: 0;
+            padding: 0;
+            width: 250px;
+            background-color: #f7f7f7;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            font-weight: bold;
+        }
 
-    div.sidebar nav {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        height: 100%;
-    }
-    
-    div.sidebar nav ul.nav__bottom {
-        margin: 0;
-    }
-    .sidebar li:hover {
-        cursor: pointer;
-    }
+        div.sidebar nav {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
 
-    .sidebar li>* {
-        display: inline-block;
-        color: #b0b0b0;
-        padding: 16px;
-        text-decoration: none;
-    }
+        div.sidebar nav ul.nav__bottom {
+            margin: 0;
+        }
 
-    .sidebar li.active {
-        background-color: #e0e0e0;
-    }
-    .sidebar li.active > * {
-        color: #3a3a3a;
-    }
-    
-    .sidebar li:hover:not(.active) {
-        background-color: #e0e0e0;
-        color: #b7b7b7;
-    }
+        .sidebar li:hover {
+            cursor: pointer;
+        }
 
-    ul {
-        padding: 0;
-        list-style-type: none;
-    }
+        .sidebar li>* {
+            display: inline-block;
+            color: #b0b0b0;
+            padding: 16px;
+            text-decoration: none;
+        }
 
-</style>
-@push('style')
+        .sidebar li.active {
+            background-color: #e0e0e0;
+        }
+
+        .sidebar li.active>* {
+            color: #3a3a3a;
+        }
+
+        .sidebar li:hover:not(.active) {
+            background-color: #e0e0e0;
+            color: #b7b7b7;
+        }
+
+        ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+    </style>
+    @push('style')
