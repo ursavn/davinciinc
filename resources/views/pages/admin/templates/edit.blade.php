@@ -5,7 +5,7 @@
         <div class="c-header">
             <h2>Edit Template</h2>
         </div>
-        <form action="{{ route('admin.templates.update', $template) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('admin.templates.update', $template->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <input type="hidden" name="old_file" value="{{ $template->url }}">

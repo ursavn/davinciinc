@@ -11,9 +11,10 @@ use Illuminate\Http\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
-class TemplatesController extends Controller
+class TemplateController extends Controller
 {
     protected $dirView = 'pages.admin.templates.';
 
@@ -53,16 +54,9 @@ class TemplatesController extends Controller
                             <a href="'. route('admin.templates.edit', $template) .'" class="btn btn-sm btn-info mr-1">
                                 <i class="fa fa-edit"></i>
                             </a>
-                            <form method="POST" action="'. route('admin.templates.destroy', $template) .'">
-                                <input type="hidden" name="_method" value="DELETE">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                <button type="submit" class="btn btn-sm btn-danger" onClick="return confirmDelete()">
-                                    <i class="fa fa-trash"></i>
-                                </button>
-                            </form>
                         </div>';
             })
-            ->rawColumns(['creator', 'updated_by', 'action'])
+            ->rawColumns(['category', 'creator', 'updated_by', 'action'])
             ->make(true);
     }
 
@@ -102,7 +96,7 @@ class TemplatesController extends Controller
 
         Template::create($data);
 
-        return view($this->dirView . 'index')->with("success", "Create success.");
+        return view($this->dirView . 'index')->with("success", Config::get('messages.create_success'));
     }
 
     /**
@@ -145,7 +139,7 @@ class TemplatesController extends Controller
         $template = Template::find($id);
 
         if (!$template) {
-            return view($this->dirView . 'index')->with("error", "Not found data.");
+            return view($this->dirView . 'index')->with("error", Config::get('messages.not_found_data'));
         }
 
         $data = $request->only(['name', 'description', 'category_id']);
@@ -153,10 +147,11 @@ class TemplatesController extends Controller
         $data['updated_by'] = Auth::user()->id;
 
         if ($request->hasFile('file')) {
-            $oleFile = Config::get('constants.PATH.TEMPLATE') . '/' . $request->old_file;
-            if( File::exists(public_path($oleFile)) ) {
-                File::delete(public_path($oleFile));
-            }
+            $oldFile = Config::get('constants.PATH.TEMPLATE') . '/' . $request->old_file;
+
+            $path = public_path('storage/') . $oldFile;
+
+            if (file_exists($path)) unlink($path);
 
             $fileName = $request->file('file')->getClientOriginalName();
             $request->file('file')->storeAs(Config::get('constants.PATH.TEMPLATE'), $fileName);
@@ -166,7 +161,7 @@ class TemplatesController extends Controller
 
         $template->update($data);
 
-        return view($this->dirView . 'index')->with("success", "Updated success.");
+        return view($this->dirView . 'index')->with("success", Config::get('messages.update_success'));
     }
 
     /**
