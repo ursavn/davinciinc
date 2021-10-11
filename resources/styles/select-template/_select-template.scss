@@ -1,7 +1,10 @@
 div.select-template {
     &__template-list {
         display: grid;
-        grid-template-columns: auto auto auto auto;
+        grid-template-columns: auto auto;
+        @media (min-width: 1200px) {
+            grid-template-columns: auto auto auto auto;
+        }
         grid-gap: 36px;
         padding: 100px;
     }
@@ -46,7 +49,7 @@ div.select-template {
             }
 
             a {
-                color: #FFFFFF;
+                color: #ffffff;
                 text-decoration: none;
             }
         }
