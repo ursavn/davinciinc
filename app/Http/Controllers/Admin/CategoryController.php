@@ -112,7 +112,6 @@ class CategoryController extends Controller
      */
     public function update(CreateRequest $request, $id)
     {
-        dd(1);
         $category = Category::find($id);
 
         if (!$category) {
