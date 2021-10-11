@@ -7,12 +7,19 @@
 
     &__type-select {
         display: flex;
+        margin-bottom: 64px;
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
     }
 
     &__image-button {
         position: relative;
         width: 100%;
         height: 640px;
+        @media (max-width: 768px) {
+            height: 200px;
+        }
 
         .type-content {
             color: white;
@@ -25,10 +32,13 @@
         .center {
             top: 50%;
             border: 1px solid white;
-            padding: 16px 64px;
+            padding: 5% 10%;
         }
 
         .bottom {
+            @media (max-width: 768px) {
+                visibility: hidden;
+            }
             top: 65%;
         }
 
@@ -41,11 +51,29 @@
     }
 
     &__info {
-        margin: 36px 72px 72px;
+        margin: 36px 64px 72px;
+        & > * {
+            margin-bottom: 64px;
+        }
     }
 
     &__intro {
         white-space: pre-line;
         line-height: 32px;
+    }
+
+    &__step {
+        .title {
+            margin-bottom: 24px;
+
+            h3,
+            h4 {
+                display: inline;
+            }
+
+            h3 {
+                margin-right: 12px;
+            }
+        }
     }
 }

@@ -5,9 +5,14 @@
 @import "select-template/_detail.scss";
 @import "user-register/_user-register.scss";
 
+@font-face {
+    font-family: "YuGothic";
+    src: url("/storage/fonts/yugothib.ttf");
+}
+
 .c-app {
+    font-family: "YuGothic";
     position: relative;
-    // height: 100vh;
     min-height: 100vh;
     margin: 0;
 }
@@ -24,7 +29,7 @@ div.c-wrapper .c-body {
 }
 
 div.c-wrapper--with-navbar {
-    margin-left: 200px;
+    margin-left: 250px;
     height: 100vh;
     position: relative;
 }

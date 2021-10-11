@@ -1,14 +1,18 @@
 <div class="sidebar">
     {{-- TODO: refactor --}}
     <nav id="nav">
-        <ul>
-            {{-- <li class="{{ Route::is('admin.dashboard') ? 'active' : '' }}">
-                <i class="fas fa-home"></i><a href="{{ route('admin.dashboard') }}">Dashboard</a>
-            </li> --}}
+        <ul class="nav__top">
             <li class="{{ Route::is('admin.users.index') ? 'active' : '' }}">
                 <i class="fas fa-th-list"></i><a href="{{ route('admin.users.index') }}">Users list</a>
             </li>
-
+            <li>
+                <i class="fas fa-th-list"></i><a href="{{ route('admin.users.index') }}">Temp 1</a>
+            </li>
+            <li>
+                <i class="fas fa-th-list"></i><a href="{{ route('admin.users.index') }}">Temp 2</a>
+            </li>
+        </ul>
+        <ul class="nav__bottom">
             <li>
                 <i class="fas fa-sign-out-alt"></i><a href="{{ route('admin.auth.get-logout') }}">Log out</a>
             </li>
@@ -28,10 +32,10 @@
 
 @push('style')
 <style>
-    .sidebar {
+    div.sidebar {
         margin: 0;
         padding: 0;
-        width: 200px;
+        width: 250px;
         background-color: #f7f7f7;
         position: fixed;
         height: 100%;
@@ -39,6 +43,16 @@
         font-weight: bold;
     }
 
+    div.sidebar nav {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+    
+    div.sidebar nav ul.nav__bottom {
+        margin: 0;
+    }
     .sidebar li:hover {
         cursor: pointer;
     }
@@ -52,12 +66,14 @@
 
     .sidebar li.active {
         background-color: #e0e0e0;
-        color: #3d3d3d;
     }
-
+    .sidebar li.active > * {
+        color: #3a3a3a;
+    }
+    
     .sidebar li:hover:not(.active) {
         background-color: #e0e0e0;
-        color: #3d3d3d;
+        color: #b7b7b7;
     }
 
     ul {
