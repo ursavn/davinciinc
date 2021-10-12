@@ -33,17 +33,18 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('register', [AuthController::class, 'getRegister'])->name('get-register');
         Route::post('register', [AuthController::class, 'postRegister'])->name('post-register');
+
+        Route::post('reset-password', [AuthController::class, 'resetPassword'])->name('reset-password');
     });
 
     Route::middleware('auth')->group(function () {
         Route::resource('users', UserController::class);
-        Route::get('list', [UserController::class, 'getUsersList'])->name('list-users');
         Route::get('any-data', [UserController::class, 'anyData'])->name('any-data');
 
         Route::resource('categories', CategoryController::class);
-        Route::get('categories-any-data', [CategoryController::class, 'anyData'])->name('categories.any-data');
+        Route::get('category-any-data', [CategoryController::class, 'anyData'])->name('categories.any-data');
 
         Route::resource('templates', AdminTemplateController::class);
-        Route::get('templates-any-data', [AdminTemplateController::class, 'anyData'])->name('templates.any-data');
+        Route::get('template-any-data', [AdminTemplateController::class, 'anyData'])->name('templates.any-data');
     });
 });

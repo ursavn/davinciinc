@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequests\CreateRequest;
+use App\Http\Requests\UserRequests\EditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -16,7 +20,35 @@ class UserController extends Controller
      */
     public function anyData()
     {
-        return DataTables::of(User::query())->make(true);
+        $users = User::all();
+
+        return DataTables::of($users)
+            ->addColumn('role', function ($user) {
+                $roles = User::$roles;
+
+                return $roles[$user->role];
+            })
+            ->addColumn('creator', function ($user) {
+                $creator = '';
+                if ($user->created_by)
+                    $creator = User::find($user->created_by)->username;
+
+                return $creator;
+            })
+            ->addColumn('updater', function ($user) {
+                $updater = '';
+                if ($user->updated_by)
+                    $updater = User::find($user->updated_by)->username;
+
+                return $updater;
+            })
+            ->addColumn('action', function ($user) {
+                return '<a href="'. route('admin.users.edit', $user) .'" class="btn btn-sm btn-info mr-1">
+                            <i class="fa fa-edit"></i>
+                        </a>';
+            })
+            ->rawColumns(['role', 'creator', 'updater', 'action'])
+            ->make(true);
     }
 
     /**
@@ -26,9 +58,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
 
-        return view('pages.admin.users.index',  ['users' => $users]);
+        return view('pages.admin.users.index');
     }
 
     /**
@@ -38,7 +69,11 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $roles = User::$roles;
+
+        return view('pages.admin.users.create', [
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -47,9 +82,23 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        //
+        $data = $request->only(['username', 'email', 'password', 'role']);
+
+        $data['created_by'] = Auth::user()->id;
+
+        if ($request->hasFile('avatar')) {
+            $imageName = $request->file('avatar')->getClientOriginalName();
+
+            $request->file('avatar')->storeAs(Config::get('constants.PATH.AVATAR'), $imageName);
+
+            $data['avatar'] = $imageName;
+        }
+
+        User::create($data);
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -71,7 +120,13 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user  = User::find($id);
+        $roles = User::$roles;
+
+        return view('pages.admin.users.edit', [
+            'user'  => $user,
+            'roles' => $roles
+        ]);
     }
 
     /**
@@ -81,9 +136,29 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EditRequest $request, $id)
     {
-        //
+        $user = User::find($id);
+
+        if (!$user) {
+            return view($this->dirView . 'index')->with("error", Config::get('messages.not_found_data'));
+        }
+
+        $data = $request->only(['username', 'email', 'role']);
+
+        $data['updated_by'] = Auth::user()->id;
+
+        if ($request->hasFile('avatar')) {
+            $imageName = $request->file('avatar')->getClientOriginalName();
+
+            $request->file('avatar')->storeAs(Config::get('constants.PATH.AVATAR'), $imageName);
+
+            $data['avatar'] = $imageName;
+        }
+
+        $user->update($data);
+
+        return redirect()->route('admin.users.index');
     }
 
     /**
