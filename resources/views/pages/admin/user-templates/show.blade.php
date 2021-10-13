@@ -8,8 +8,8 @@
         <div class="c-content">
             @foreach($content as $key => $val)
                 <div class="user-template-list__content">
-                    <div>{{ $key }}</div>
-                    <div>{{ $val }}</div>
+                    <div>{!! $key !!}</div>
+                    <div>{!! $val !!}</div>
                 </div>
             @endforeach
         </div>
