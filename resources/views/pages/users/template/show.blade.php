@@ -4,10 +4,14 @@
     <div class="template-detail">
         <div class="form-group row template-detail__box">
             <div class="col-6 template-detail__form">
-                <div id="formGenerate"></div>
+                <form action="{{ route('templates.create') }}" id="formGenerate">
+                    @csrf
+                </form>
             </div>
             <div class="col-6 template-detail__sample" id="template">
                 {!! $template !!}
+
+                <button type="button" class="btn btn-success" onclick="createTemplate()">Save</button>
             </div>
         </div>
     </div>
@@ -26,6 +30,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 <script>
+    function createTemplate() {
+        console.log($('#formGenerate').serialize());
+        $.ajax({
+            type: "POST",
+            url: $('#formGenerate').attr('action'),
+            data: $('#formGenerate').serialize(),
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+            if (data.status === 200) {
+            } else if (data.status === 422) {
+            }
+        })
+
+        event.preventDefault();
+    }
+
     $(window).on('load', function() {
         let elements = $('#template')[0].firstElementChild.querySelectorAll("div");
 
@@ -89,11 +110,11 @@
 
         switch (type) {
             case 'input':
-                result = '<input type="text" class="form-control col-8" name=" ' + field + ' " onkeyup="bindingTemplate(event)">';
+                result = '<input type="text" class="form-control col-8" name=" ' + label + ' " onkeyup="bindingTemplate(event)" required>';
                 break;
 
             case 'textarea':
-                result = '<textarea class="form-control col-11" name="' + field + '" onkeyup="bindingTemplate(event)"></textarea>';
+                result = '<textarea class="form-control col-11" name="' + label + '" onkeyup="bindingTemplate(event)"></textarea>';
                 break;
 
             case 'radio':
@@ -102,7 +123,7 @@
 
                 optionsArr.forEach(function(val) {
                     let inner = '<div class="form-check mr-3" onchange="bindingTemplate(event)">' +
-                        '<input class="form-check-input" type="' + type + '" name="' + field + '" value="' + val + '">' +
+                        '<input class="form-check-input" type="' + type + '" name="' + label + '" value="' + val + '">' +
                         '<label class="form-check-label">' + val  + '</label>' +
                         '</div>';
 
@@ -120,18 +141,18 @@
                     content += inner;
                 })
 
-                result = '<select class="form-control col-8" name="' + field + '" onchange="bindingTemplate(event)">' + content + '</select>';
+                result = '<select class="form-control col-8" name="' + label + '" onchange="bindingTemplate(event)">' + content + '</select>';
                 break;
 
             case 'file':
                 result = '<label class="custom-file-upload">' +
-                    '<input type="file" class="form-control-file" name="' + field + '" onchange="readURL(this)">' +
+                    '<input type="file" class="form-control-file" name="' + label + '" onchange="readURL(this)">' +
                     label +
                     '</label>';
                 break;
 
             case 'datetime':
-                result = '<input type="datetime-local" class="form-control col-8" name="' + field + '" onchange="bindingDateTime(event)" onkeyup="bindingDateTime(event)">';
+                result = '<input type="datetime-local" class="form-control col-8" name="' + label + '" onchange="bindingDateTime(event)" onkeyup="bindingDateTime(event)">';
                 break;
         }
 
