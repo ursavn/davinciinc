@@ -7,11 +7,8 @@ use App\Http\Requests\TemplateRequests\CreateRequest;
 use App\Http\Requests\TemplateRequests\EditRequest;
 use App\Models\Category;
 use App\Models\Template;
-use Illuminate\Http\File;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class TemplateController extends Controller
@@ -49,14 +46,33 @@ class TemplateController extends Controller
             ->addColumn('updater', function ($template) {
                 return $template->updater ? $template->updater->username : '';
             })
-            ->addColumn('action', function ($template) {
-                return '<div class="d-flex">
-                            <a href="'. route('admin.templates.edit', $template) .'" class="btn btn-sm btn-info mr-1">
-                                <i class="fa fa-edit"></i>
+            ->addColumn('url', function ($template) {
+                $path = "storage/templates/" . $template->url;
+
+                return '<div class="d-flex align-items-center url-action">
+                            <a href="'. asset($path) .'" target="_blank">'. $template->url .'</a>
+                            <a href="'. asset($path) .'" download="'. $template->url .'">
+                               <i class="fa fa-download ml-2"></i>
                             </a>
                         </div>';
             })
-            ->rawColumns(['category', 'creator', 'updated_by', 'action'])
+            ->addColumn('action', function ($template) {
+                return '<div class="d-flex">
+                            <div>
+                                <a href="'. route('admin.templates.edit', $template) .'" class="btn btn-sm btn-info mr-1">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                            </div>
+                            <form action="'. route('admin.templates.destroy', $template) .'" method="POST">
+                                <input type="hidden" name="_token" value="'. csrf_token().'">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-sm btn-danger" onClick="return confirmDelete()">
+                                    <i class="fa fa-trash"></i>
+                                </button>
+                            </form>
+                        </div>';
+            })
+            ->rawColumns(['url', 'category', 'creator', 'updated_by', 'action'])
             ->make(true);
     }
 
@@ -96,7 +112,7 @@ class TemplateController extends Controller
 
         Template::create($data);
 
-        return view($this->dirView . 'index')->with("success", Config::get('messages.create_success'));
+        return redirect()->route('admin.templates.index')->with('success', Config::get('messages.create_success'));
     }
 
     /**
@@ -118,7 +134,12 @@ class TemplateController extends Controller
      */
     public function edit($id)
     {
-        $template   = Template::find($id);
+        $template = Template::find($id);
+
+        if (!$template) {
+            return redirect()->route('admin.templates.index')->with('error', Config::get('messages.not_found_data'));
+        }
+
         $categories = Category::all();
 
         return view($this->dirView . 'edit', [
@@ -139,7 +160,7 @@ class TemplateController extends Controller
         $template = Template::find($id);
 
         if (!$template) {
-            return view($this->dirView . 'index')->with("error", Config::get('messages.not_found_data'));
+            return redirect()->route('admin.templates.index')->with('error', Config::get('messages.not_found_data'));
         }
 
         $data = $request->only(['name', 'description', 'category_id']);
@@ -161,7 +182,7 @@ class TemplateController extends Controller
 
         $template->update($data);
 
-        return view($this->dirView . 'index')->with("success", Config::get('messages.update_success'));
+        return redirect()->route('admin.templates.index')->with('success', Config::get('messages.update_success'));
     }
 
     /**
@@ -172,6 +193,14 @@ class TemplateController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $template = Template::find($id);
+
+        if (!$template) {
+            return redirect()->route('admin.templates.index')->with('error', Config::get('messages.not_found_data'));
+        }
+
+        $template->delete();
+
+        return redirect()->route('admin.templates.index')->with('success', Config::get('messages.delete_success'));
     }
 }

@@ -35,6 +35,21 @@
         </div>
         @include('includes.footer')
     </div>
+
+    <script>
+        function confirmDelete() {
+            var result = confirm('Are you sure want to delete?');
+
+            if (result) {
+                return true;
+            }
+            return false;
+        }
+
+        setTimeout(function(){
+            $('.alert.alert-success.alert-block, .alert.alert-danger.alert-block').remove();
+        }, 2000 );
+    </script>
 </body>
 
 </html>
