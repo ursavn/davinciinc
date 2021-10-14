@@ -39,9 +39,9 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <input type="password" class="form-control" name="password_confirmation" placeholder="Confirm password">
-                    @if ($errors->has('password_confirmation'))
-                        <span class="text-danger">{{ $errors->first('password_confirmation') }}</span>
+                    <input type="password" class="form-control" name="confirm_password" placeholder="Confirm password">
+                    @if ($errors->has('confirm_password'))
+                        <span class="text-danger">{{ $errors->first('confirm_password') }}</span>
                     @endif
                 </div>
                 <div class="form-group">

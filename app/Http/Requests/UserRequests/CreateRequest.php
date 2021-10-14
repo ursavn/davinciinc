@@ -26,8 +26,8 @@ class CreateRequest extends FormRequest
         return [
             'username' => 'required|max:225',
             'email' => 'required|max:225|email|unique:user',
-            'password' => 'required|min:6|max:16|confirmed',
-            'password_confirmation' => 'required|min:6|max:16',
+            'password' => 'required|min:6|max:16',
+            'confirm_password' => 'required|min:6|max:16|same:password',
             'role' => 'required'
         ];
     }
