@@ -5,6 +5,7 @@
 @import "select-template/_detail.scss";
 @import "user-register/_user-register.scss";
 @import "admin-app/admin-app";
+@import "shared/_global.scss";
 
 @font-face {
     font-family: "YuGothic";
@@ -16,6 +17,7 @@
     position: relative;
     min-height: 100vh;
     margin: 0;
+    overflow-x: hidden;
 }
 
 div.c-wrapper {
