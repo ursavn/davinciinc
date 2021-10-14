@@ -12,16 +12,7 @@
                 </a>
             </div>
 
-            @if (session('success'))
-                <div class="alert alert-success alert-block">
-                    <strong>{{ session('success') }}</strong>
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-success alert-block">
-                    <strong>{{ session('error') }}</strong>
-                </div>
-            @endif
+            @include('includes/alert-block')
 
             <div class="categories-list__table">
                 <table class="table table-bordered" id="categories-table">

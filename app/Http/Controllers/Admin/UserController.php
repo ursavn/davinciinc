@@ -3,12 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequests\ChangePasswordRequest;
 use App\Http\Requests\UserRequests\CreateRequest;
 use App\Http\Requests\UserRequests\EditRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserController extends Controller
@@ -43,9 +45,14 @@ class UserController extends Controller
                 return $updater;
             })
             ->addColumn('action', function ($user) {
-                return '<a href="'. route('admin.users.edit', $user) .'" class="btn btn-sm btn-info mr-1">
-                            <i class="fa fa-edit"></i>
-                        </a>';
+                return '<div class="d-flex actions">
+                            <a type="button" onclick="openChangePasswordModal('. $user->id .')" class="btn btn-sm btn-warning mr-1">
+                                <i class="fa fa-lock"></i>
+                            </a>
+                            <a href="'. route('admin.users.edit', $user) .'" class="btn btn-sm btn-info">
+                                <i class="fa fa-edit"></i>
+                            </a>
+                        </div>';
             })
             ->rawColumns(['role', 'creator', 'updater', 'action'])
             ->make(true);
@@ -98,7 +105,7 @@ class UserController extends Controller
 
         User::create($data);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', Config::get('messages.create_success'));
     }
 
     /**
@@ -121,6 +128,12 @@ class UserController extends Controller
     public function edit($id)
     {
         $user  = User::find($id);
+
+        if (!$user) {
+
+            return redirect()->route('admin.users.index')->with('error', Config::get('messages.not_found_data'));
+        }
+
         $roles = User::$roles;
 
         return view('pages.admin.users.edit', [
@@ -141,7 +154,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return view($this->dirView . 'index')->with("error", Config::get('messages.not_found_data'));
+            return redirect()->route('admin.users.index')->with('error', Config::get('messages.not_found_data'));
         }
 
         $data = $request->only(['username', 'email', 'role']);
@@ -158,7 +171,32 @@ class UserController extends Controller
 
         $user->update($data);
 
-        return redirect()->route('admin.users.index');
+        return redirect()->route('admin.users.index')->with('success', Config::get('messages.update_success'));
+    }
+
+    public function changePassword(ChangePasswordRequest $request, $id)
+    {
+        $user = User::find($id);
+
+        if (!$user) {
+
+        }
+
+        $currentPassword = $user->password;
+        $newPassword     = $request['new_password'];
+
+        if (Hash::check($newPassword, $currentPassword)) {
+            return response([
+                'status' => 422,
+                'message' => 'The new password is the same as the current password.'
+            ]);
+        }
+
+        $user->update([
+            'password' => $newPassword
+        ]);
+
+        return response(['status' => 200]);
     }
 
     /**

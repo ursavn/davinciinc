@@ -40,6 +40,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware('auth')->group(function () {
         Route::resource('users', UserController::class);
         Route::get('any-data', [UserController::class, 'anyData'])->name('any-data');
+        Route::post('users/change-password/{id}', [UserController::class, 'changePassword'])->name('users.change-password');
 
         Route::resource('categories', CategoryController::class);
         Route::get('category-any-data', [CategoryController::class, 'anyData'])->name('categories.any-data');
