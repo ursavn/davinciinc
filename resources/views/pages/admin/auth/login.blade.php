@@ -38,9 +38,9 @@
                     <div class="login__action">
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
                     </div>
-                    <div class="login__footer">
-                        <a href="{{ route('admin.auth.get-register') }}">Register new account</a>
-                    </div>
+{{--                    <div class="login__footer">--}}
+{{--                        <a href="{{ route('admin.auth.get-register') }}">Register new account</a>--}}
+{{--                    </div>--}}
                 </form>
             </div>
         </div>

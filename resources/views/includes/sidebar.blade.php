@@ -3,22 +3,28 @@
     <nav id="nav">
         <ul class="nav__top">
             <li class="{{ Route::is('admin.users.index') ? 'active' : '' }}">
-                <i class="fas fa-th-list"></i><a href="{{ route('admin.users.index') }}">Users list</a>
+                <i class="fas fa-users"></i><a href="{{ route('admin.users.index') }}">Users Management</a>
             </li>
             <li class="{{ Route::is('admin.categories.index') ? 'active' : '' }}">
-                <i class="fas fa-th-list"></i><a href="{{ route('admin.categories.index') }}">Categories list</a>
+                <i class="fas fa-th-list"></i><a href="{{ route('admin.categories.index') }}">Categories Management</a>
             </li>
             <li class="{{ Route::is('admin.templates.index') ? 'active' : '' }}">
-                <i class="fas fa-th-list"></i><a href="{{ route('admin.templates.index') }}">Templates list</a>
+                <i class="fas fa-th-list"></i><a href="{{ route('admin.templates.index') }}">Templates Management</a>
             </li>
         </ul>
         <ul class="nav__bottom">
+            <li>
+                <i class="fas fa-sign-out-alt"></i>
+                <a type="button" id="resetPassBtn" data-toggle="modal" data-target="#resetPasswordModal">Reset password</a>
+            </li>
             <li>
                 <i class="fas fa-sign-out-alt"></i><a href="{{ route('admin.auth.get-logout') }}">Log out</a>
             </li>
         </ul>
     </nav>
 </div>
+
+@include('pages/admin/auth/reset-password')
 
 @push('scripts')
     <script>

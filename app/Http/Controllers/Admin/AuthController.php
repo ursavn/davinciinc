@@ -3,14 +3,17 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AuthRequests\ChangePasswordRequest;
 use App\Http\Requests\AuthRequests\LoginRequest;
 use App\Http\Requests\AuthRequests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+    protected $dirView = 'pages.admin.auth.';
     protected $user;
 
     public function __construct(User $user)
@@ -21,7 +24,7 @@ class AuthController extends Controller
     public function getRegister()
     {
 
-        return view('pages.admin.register');
+        return view($this->dirView . 'register');
     }
 
     public function postRegister(RegisterRequest $request)
@@ -50,7 +53,7 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect('admin');
         } else {
-            return view('pages.admin.login');
+            return view($this->dirView . 'login');
         }
     }
 
@@ -72,5 +75,36 @@ class AuthController extends Controller
     {
         Auth::logout();
         return redirect()->route('admin.auth.get-login');
+    }
+
+    public function resetPassword(ChangePasswordRequest $request)
+    {
+        $currentPassword = $request['current_password'];
+        $newPassword     = $request['new_password'];
+
+        if (!(Hash::check($currentPassword, Auth::user()->password))) {
+            return response([
+                'status' => 422,
+                'message' => 'The current password is incorrect.'
+            ]);
+        }
+
+        if (strcmp($currentPassword, $newPassword) == false) {
+            return response([
+                'status' => 422,
+                'message' => 'The new password is the same as the current password.'
+            ]);
+        }
+
+        $user = User::find(Auth::user()->id);
+
+        $user->update([
+            'password' => $newPassword
+        ]);
+
+        return response([
+            'status' => 200,
+            'message' => 'Password changed successfully. Please log in again.'
+        ]);
     }
 }
