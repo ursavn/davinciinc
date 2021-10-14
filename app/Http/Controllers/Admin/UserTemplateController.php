@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserTemplate;
+use Illuminate\Support\Facades\Config;
 use Yajra\DataTables\Facades\DataTables;
 
 class UserTemplateController extends Controller
@@ -25,10 +26,10 @@ class UserTemplateController extends Controller
 
         return DataTables::of($userTemplates)
             ->addColumn('template_name', function ($userTemplate) {
-                return $userTemplate->template->name;
+                return $userTemplate->template ? $userTemplate->template->name : '';
             })
             ->addColumn('template_url', function ($userTemplate) {
-                return $userTemplate->template->url;
+                return $userTemplate->template ? $userTemplate->template->url : '';
             })
             ->addColumn('action', function ($userTemplate) {
                 return '<a href="'. route('admin.user-templates.show', $userTemplate) .'" class="btn btn-sm btn-info mr-1">
@@ -48,6 +49,10 @@ class UserTemplateController extends Controller
     public function show($id)
     {
         $userTemplate = UserTemplate::find($id);
+
+        if (!$userTemplate) {
+            return redirect()->route('admin.user-templates.index')->with('error', Config::get('messages.not_found_data'));
+        }
 
         $content = json_decode($userTemplate->content);
 

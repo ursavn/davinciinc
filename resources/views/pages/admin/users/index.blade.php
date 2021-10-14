@@ -11,6 +11,9 @@
                     <i class="fa fa-plus"></i> Create
                 </a>
             </div>
+
+            @include('includes/alert-block')
+
             <div class="table-wrapper">
                 <table class="table table-bordered" id="users-table">
                     <thead>
@@ -30,6 +33,8 @@
             </div>
         </div>
     </div>
+
+    @include('pages.admin.users.change-password')
 @endsection
 
 @push('scripts')
@@ -81,4 +86,12 @@
             });
         });
     </script>
+@endpush
+
+@push('style')
+    <style>
+        .actions a i {
+            color: white;
+        }
+    </style>
 @endpush

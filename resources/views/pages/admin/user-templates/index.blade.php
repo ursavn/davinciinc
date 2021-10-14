@@ -5,6 +5,7 @@
         <div class="c-header">
             <h2>User Templates List</h2>
         </div>
+        @include('includes/alert-block')
         <div class="c-content">
             <div class="user-templates-list__table">
                 <table class="table table-bordered" id="templates-table">

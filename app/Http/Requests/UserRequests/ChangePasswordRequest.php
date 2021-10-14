@@ -3,8 +3,9 @@
 namespace App\Http\Requests\UserRequests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
-class CreateRequest extends FormRequest
+class ChangePasswordRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,11 +25,8 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|max:225',
-            'email' => 'required|max:225|email|unique:user',
-            'password' => 'required|min:6|max:16',
-            'confirm_password' => 'required|min:6|max:16|same:password',
-            'role' => 'required'
+            'new_password' => 'required|min:6|max:16',
+            'confirm_password' => 'required|min:6|max:16|required_with:password|same:new_password',
         ];
     }
 }

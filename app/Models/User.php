@@ -22,8 +22,6 @@ class User extends Authenticatable
         'password',
         'avatar',
         'role',
-        'reset_key',
-        'reset_expire',
         'created_by',
         'updated_by',
         'created_at',
