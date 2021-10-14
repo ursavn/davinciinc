@@ -32,9 +32,11 @@ class UserTemplateController extends Controller
                 return $userTemplate->template ? $userTemplate->template->url : '';
             })
             ->addColumn('action', function ($userTemplate) {
-                return '<a href="'. route('admin.user-templates.show', $userTemplate) .'" class="btn btn-sm btn-info mr-1">
-                            <i class="fa fa-eye"></i>
-                        </a>';
+                return '<div class="action-column">
+                            <a href="'. route('admin.user-templates.show', $userTemplate) .'" class="btn btn-sm btn-warning mr-1">
+                                <i class="fa fa-eye"></i>
+                            </a>
+                        </div>';
             })
             ->rawColumns(['template_name', 'template_url', 'action'])
             ->make(true);
