@@ -8,8 +8,8 @@
             <li class="{{ Route::is('admin.categories.index') ? 'active' : '' }}">
                 <i class="fas fa-th-list"></i><a href="{{ route('admin.categories.index') }}">Categories list</a>
             </li>
-            <li>
-                <i class="fas fa-th-list"></i><a href="{{ route('admin.users.index') }}">Temp 2</a>
+            <li class="{{ Route::is('admin.templates.index') ? 'active' : '' }}">
+                <i class="fas fa-th-list"></i><a href="{{ route('admin.templates.index') }}">Templates list</a>
             </li>
         </ul>
         <ul class="nav__bottom">

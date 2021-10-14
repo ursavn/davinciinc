@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryRequests\CreateRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
@@ -74,7 +75,7 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        return view($this->dirView . 'index')->with("success", "Create success.");
+        return redirect()->route('admin.categories.index')->with('success', Config::get('messages.create_success'));
     }
 
     /**
@@ -98,6 +99,10 @@ class CategoryController extends Controller
     {
         $category = Category::find($id);
 
+        if (!$category) {
+            return redirect()->route('admin.categories.index')->with('error', Config::get('messages.not_found_data'));
+        }
+
         return view($this->dirView . 'edit', [
             'category' => $category
         ]);
@@ -115,7 +120,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
 
         if (!$category) {
-            return view($this->dirView . 'index')->with("error", "Not found data.");
+            return redirect()->route('admin.categories.index')->with('error', Config::get('messages.not_found_data'));
         }
 
         $data = $request->only(['name', 'description']);
@@ -124,7 +129,7 @@ class CategoryController extends Controller
 
         $category->update($data);
 
-        return view($this->dirView . 'index')->with("success", "Updated success.");
+        return redirect()->route('admin.categories.index')->with('success', Config::get('messages.update_success'));
     }
 
     /**
