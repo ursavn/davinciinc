@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="template-detail">
+    <div class="template-detail full-width">
         <div class="form-group row template-detail__box">
             <div class="col-6 template-detail__form">
                 <div id="formGenerate"></div>

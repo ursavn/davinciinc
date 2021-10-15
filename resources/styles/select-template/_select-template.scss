@@ -5,52 +5,52 @@ div.select-template {
         @media (min-width: 1200px) {
             grid-template-columns: auto auto auto auto;
         }
-        grid-gap: 36px;
-        padding: 100px;
+        grid-gap: 50px;
+        margin-bottom: var(--rowSpace);
     }
 
     &__cover {
         position: relative;
-        width: 100%;
-        height: 320px;
-
-        div.center-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-
-            border: 1px solid white;
-            font-weight: bold;
-            font-size: 24px;
-            padding: 16px 72px;
-            color: white;
+        margin-bottom: var(--rowSpace);
+        .template-image{
+            background: no-repeat center/cover;
+            background-image: url("https://i.kym-cdn.com/entries/icons/original/000/035/699/pepe.jpg");
+            padding-top: 34%;
+        }
+        .center-text{
+            font-size: 3.6rem;
+            padding: 35px 60px;
+            border: 2px solid #ffffff;
+            line-height: 1;
         }
     }
 
     &__image-button {
         position: relative;
         width: 100%;
-        height: 320px;
+        .template-image{
+            background: no-repeat center/cover;
+            padding-top: 150%;
+        }
 
         div.overlay {
             transition: 0.3s;
             cursor: pointer;
 
             button.select-button {
+                font-size: 1.6rem;
                 visibility: hidden;
-                border: 1px solid white;
-                padding: 0;
+                border: 2px solid white;
+                padding: 20px 30px;
                 font-weight: bold;
                 background-color: rgba(255, 255, 255, 0);
                 color: white;
                 cursor: pointer;
-            }
-
-            a {
-                color: #ffffff;
-                text-decoration: none;
+                line-height: 1;
+                a {
+                    color: #ffffff;
+                    text-decoration: none;
+                }
             }
         }
 

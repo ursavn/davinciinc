@@ -1,18 +1,23 @@
 div.template-detail {
     &__box {
-        border: 1px solid #eeeeee;
-        padding: 20px;
-        margin-bottom: 30px;
+        padding: 0 15px;
+        margin: 0;
     }
 
     &__form {
-        border-right: 1px solid #eeeeee;
-        padding-right: 35px;
-
+        padding: 0;
+        #formGenerate{
+            border: 2px solid #dddddd;
+            padding: 40px 90px;
+        }
         .form-group {
-            margin-bottom: 5px !important;
-            border-bottom: 1px solid #eeeeee;
-            padding-bottom: 10px;
+            border-bottom: 1px solid #dddddd;
+            padding: 0 60px 15px;
+            margin: 0 0 15px 0;
+            & > label{
+                font-size: 1.8rem;
+                font-weight: 700;
+            }
         }
 
         .form-group label {
@@ -25,7 +30,7 @@ div.template-detail {
     }
 
     &__sample {
-        padding-left: 35px;
+        padding: 0 90px;
     }
 
 }
