@@ -1,7 +1,10 @@
 .home {
     &__type-select {
         display: flex;
-        margin-bottom: 110px;
+        margin-bottom: var(--rowSpace);
+        @media(max-width: 767px){
+            flex-direction: column;
+        }
     }
 
     &__image-button {
@@ -27,8 +30,11 @@
         .type-image{
             padding-top: 150%;
             background: no-repeat center/cover;
-            @media (max-width: 767px) {
+            @media (max-width: 1200px) {
                 padding-top: 100%;
+            }
+            @media(max-width: 767px){
+                padding-top: 30%;
             }
         }
 
@@ -43,24 +49,28 @@
                 margin-bottom: 95px;
                 @media(max-width: 1400px){
                     padding: 15px 50px;
-                    margin-bottom: 60px;
+                    margin-bottom: 40px;
                 }
-                @media(max-width: 767px){
+                @media(max-width: 1024px){
                     margin-bottom: 30px;
                     padding: 15px;
+                }
+                @media(max-width: 767px){
+                    padding: 15px 30px;
+                }
+                @media(max-width: 480px){
+                    padding: 10px 30px;
+                    margin-bottom: 10px;
                 }
             }
             &.bottom {
                 color: inherit;
             }
-            &.center,
-            &.bottom{
-                @media(max-width: 1400px){
-                    font-size: 2.5rem;
-                }
-                @media(max-width: 767px){
-                    font-size: 2rem;
-                }
+            @media(max-width: 1400px){
+                font-size: 2.5rem;
+            }
+            @media(max-width: 767px){
+                font-size: 1.5rem;
             }
         }
 
@@ -75,27 +85,47 @@
     &__info {
         font-size: 2.6rem;
         & > *{
-            margin-bottom: 110px;
+            margin-bottom: var(--rowSpace2);
+        }
+        @media(max-width: 1200px){
+            font-size: 1.8rem;  
         }
     }
 
     &__how-to {
         display: flex;
         align-items: center;
-        margin-bottom: 100px;
+        margin-bottom: var(--rowSpace2);
         & > * {
             display: inline-block;
             line-height: 1;
         }
         h2{
             font-size: 4rem;
-            margin: 0;
+            margin: 0 40px 0 0;
         }
         hr{
             width: 330px;
-            margin: 0 40px;
+            margin: 0 40px 0 0;
             opacity: 1;
             height: 0;
+        }
+        @media(max-width: 1200px){
+            h2{
+                font-size: 3rem;
+            }
+            hr{
+                width: 100px;
+            }
+        }
+        @media(max-width: 575px){
+            flex-direction: column;
+            h2{
+                margin: 0;
+            }
+            hr{
+                margin: 10px 0 20px;
+            }
         }
     }
 
@@ -106,7 +136,7 @@
 
     &__step {
         .title {
-            margin: 0 0  55px 0;
+            margin: 0 0 55px 0;
             h3 {
                 font-size: 3rem;
                 margin: 0;
@@ -117,6 +147,17 @@
                     font-size: 4rem;
                     font-weight: inherit;
                     margin-right: 40px;
+                }
+            }
+            @media(max-width: 1200px){
+                margin: 0 0 20px 0;
+                h3{
+                    font-size: 2rem;
+                    line-height: 1.2;
+                    span{
+                        font-size: 3rem;
+                        margin-right: 20px;
+                    }
                 }
             }
         }
