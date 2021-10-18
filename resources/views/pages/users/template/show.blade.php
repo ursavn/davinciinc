@@ -13,15 +13,6 @@
     </div>
 @endsection
 
-<style>
-    .template-detail__form .custom-file-upload {
-        background: #333333;
-        padding: 8px 20px;
-        color: #ffffff;
-        margin-top: 10px;
-    }
-</style>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
@@ -89,11 +80,11 @@
 
         switch (type) {
             case 'input':
-                result = '<input type="text" class="form-control col-8" name=" ' + field + ' " onkeyup="bindingTemplate(event)">';
+                result = '<input type="text" class="form-control col-5" name=" ' + field + ' " onkeyup="bindingTemplate(event)">';
                 break;
 
             case 'textarea':
-                result = '<textarea class="form-control col-11" name="' + field + '" onkeyup="bindingTemplate(event)"></textarea>';
+                result = '<textarea class="form-control col-10" rows="4" name="' + field + '" onkeyup="bindingTemplate(event)"></textarea>';
                 break;
 
             case 'radio':
@@ -101,7 +92,7 @@
                 var optionsArr = options.split(',');
 
                 optionsArr.forEach(function(val) {
-                    let inner = '<div class="form-check mr-3" onchange="bindingTemplate(event)">' +
+                    let inner = '<div class="form-check" onchange="bindingTemplate(event)">' +
                         '<input class="form-check-input" type="' + type + '" name="' + field + '" value="' + val + '">' +
                         '<label class="form-check-label">' + val  + '</label>' +
                         '</div>';
@@ -109,7 +100,7 @@
                     content += inner;
                 })
 
-                result = '<div class="col-10 row">' + content + '</div>';
+                result = '<div class="group-radio">' + content + '</div>';
                 break;
 
             case 'select':
