@@ -29,7 +29,7 @@
 
         .type-image{
             padding-top: 150%;
-            background: no-repeat center/cover;
+            background: var(--bgFirstScreen) no-repeat center/cover;
             @media (max-width: 1200px) {
                 padding-top: 100%;
             }

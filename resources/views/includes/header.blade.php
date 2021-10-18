@@ -1,7 +1,9 @@
 <header class="header">
     <div class="container-xl">
-        <h1 class="page-title">PetFlier</h1>
-        <p class="page-description">ペットの無料ポスター・チラシデータ作成</p>
+        <div class="full-width full-width--padding">
+            <h1 class="page-title">PetFlier</h1>
+            <p class="page-description">ペットの無料ポスター・チラシデータ作成</p>
+        </div>
     </div>
 </header>
 

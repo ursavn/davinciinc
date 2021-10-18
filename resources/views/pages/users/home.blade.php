@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="home">
+    <div class="home full-width full-width--padding">
         <div class="home__type-select full-width">
             <div class="home__image-button">
                 <div class="type-image"></div>

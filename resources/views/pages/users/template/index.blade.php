@@ -10,19 +10,20 @@
         </div>
     </div>
 
-    <div class="select-template__template-list">
-        @foreach ($templates as $template)
-            <div class="select-template__image-button">
-                <div class="template-image" style='background-image: url("https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg")'></div>
-                <div class="overlay">
-                    <button class="select-button">
-                        <a href="{{ route('show-template', 1) }}">
-                            このテンプレートで作成する
-                        </a>
-                    </button>
+    <div class="full-width full-width--padding">
+        <div class="select-template__template-list">
+            @foreach ($templates as $template)
+                <div class="select-template__image-button">
+                    <div class="template-image" style='background-image: url("https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg")'></div>
+                    <div class="overlay">
+                        <button class="select-button">
+                            <a href="{{ route('show-template', 1) }}">
+                                このテンプレートで作成する
+                            </a>
+                        </button>
+                    </div>
                 </div>
-            </div>
-        @endforeach
-    </div>
+            @endforeach
+        </div>
     </div>
 @endsection

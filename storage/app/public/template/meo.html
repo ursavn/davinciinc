@@ -1,29 +1,82 @@
 <div class="template-meo">
-    <div>ペットの種類</div>
-    <div data-field="type" data-label="ペットの種類" data-type="radio" data-options="犬,猫,鳥">type</div>
-    <div>行方が分からなくなった日時</div>
-    <div data-field="datetime" data-label="行方が分からなくなった日時" data-type="datetime">行方が分からなくなった日時</div>
-    <div>分頃 行方が分からなくなった場所</div>
-    <div data-field="address" data-label="分頃 行方が分からなくなった場所" data-type="input">address</div>
-    <div>ペットのお名前</div>
-    <div data-field="name" data-label="ペットのお名前" data-type="input">name</div>
-    <div>ペットの性別</div>
-    <div data-field="sex" data-label="ペットの性別" data-type="input">sex</div>
-    <div>ペットの年齢</div>
-    <div data-field="age" data-label="ペットの年齢" data-type="input">age</div>
-    <div>ペットの特徴・性格など </div>
-    <div data-field="age" data-label="ペットの特徴・性格など " data-type="textarea">đặc điểm về tính cách của thú</div>
-    <div>その他（失踪した経緯や状況）</div>
-    <div data-field="comment" data-label="その他（失踪した経緯や状況）" data-type="textarea">comment</div>
-    <div>飼い主様のお名前</div>
-    <div data-field="image1" data-label="飼い主様のお名前" data-type="file">image</div>
-    <img id="image1" src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" alt="your image" />
+    <section class="poster poster--header">
+        <div class="pet-type bind-data" data-field="pet-type" data-label="ペットの種類" data-type="radio" data-options="犬,猫,鳥">犬</div>
+        <div>
+            <div class="txt-looking">探しています!</div>
+            <div class="bind-data" data-field="datetime" data-label="行方が分からなくなった日時" data-type="datetime">2017年9月10日 14時00分頃</div>
+            <div class="bind-data" data-field="lost-place" data-label="行方が分からなくなった場所" data-type="input">渋谷区</div>
+        </div>
+    </section>
+    <section class="poster poster-row2">
+        <section class="poster-col1">
+            <div class="bind-data" data-field="image1" data-label="飼い主様のお名前" data-type="file"></div>
+            <img id="image1" src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" alt="your image" />
+        </section>
+        <section class="poster-col2">
+            <div class="heading">
+                <div class="heading-title">名前</div>
+                <div class="heading-content bind-data" data-field="pet-name" data-label="名前" data-type="input">こたろう</div>
+            </div>
+            <div class="heading">
+                <div class="heading-title">犬種</div>
+                <div class="heading-content bind-data" data-field="pet-breed" data-label="犬種" data-type="input">ロングコートチワワ</div>
+            </div>
+            <div class="heading">
+                <div class="heading-title">性別/年齢</div>
+                <div class="heading-content bind-data" data-field="pet-gender-age" data-label="性別/年齢" data-type="input">オス/3歳6ヶ月</div>
+            </div>
+        </section>
+    </section>
+    <section class="poster poster-row3">
+        <div class="heading">
+            <div class="heading-title">特徴・性格</div>
+            <div class="heading-content bind-data" data-field="pet-features-personality " data-label="性別/年齢" data-type="input">ロングコートチワワの男の子です。 人懐っこい性格、滅多に吠えたりはしません。</div>
+        </div>
+    </section>
+    <section class="poster poster-row4">
+        <div class="heading">
+            <div class="heading-title">その他 (失踪した状況)</div>
+            <div class="heading-content bind-data" data-field="pet-features-personality " data-label="性別/年齢" data-type="input">公園で遊んでいて、大きな音にびっくりして走り出してしまいました。 赤い首輪をしています。すぐ に探しましたが夜になっても見つけてあげられませんでした。 どんな小さな情報でも構いませんの で、 ご連絡お願いします!
+            </div>
+        </div>
+    </section>
+    <section class="poster poster--footer poster__heading">
+        <div class="heading-title heading-title--warning">見かけた方はこちらにご連絡をお願いします!</div>
+        <div class="heading-content">
+            <section class="poster-row5">
+                <div class="bind-data" data-field="phone-number" data-label="電話番号" data-type="input">090-XXXX-XXXX</div>
+                <div class="bind-data" data-field="twitter" data-label="ツイッター" data-type="input">kotaro1016</div>
+            </section>
+            <section class="poster-row̉">
+                <div class="bind-data" data-field="twitter" data-label="Eメール" data-type="input">kotaro_t@wonderful.jp</div>
+            </section>
+        </div>
+    </section>
 </div>
 
 <style>
     .template-meo {
+        width: 660px;
+        height: 890px;
         background: #ffe100;
-        padding: 10px;
+        padding: 18px;
+        margin: 0 auto;
+    }
+    .poster{
+    }
+    .poster--header{
+        display: flex;
+        align-items: center;
+    }
+    .pet-type{
+        font-size:150px;
+        font-weight: 700;
+        color: #fe0711;
+    }
+    .character:before{
+        content:"";
+        -webkit-text-stroke: 0.21em white;
+        background: no-repeat linear-gradient(white, white) 15% 50% / 85% 60%;
     }
     img {
         width: 307px;

@@ -6,8 +6,8 @@
     .footer {
         width: 100%;
         padding: 35px 0;
-        background-color: #222222;
-        color: #ffffff;
+        background-color: var(--bgFooter);
+        color: var(--txtFooter);
         text-align: center;
         font-weight: 700;
         line-height: 1;
