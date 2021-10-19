@@ -4,10 +4,14 @@
     <div class="template-detail">
         <div class="form-group row template-detail__box">
             <div class="col-6 template-detail__form">
-                <div id="formGenerate"></div>
+                <form action="{{ route('templates.create') }}" id="formGenerate">
+                    @csrf
+                </form>
             </div>
             <div class="col-6 template-detail__sample" id="template">
                 {!! $template !!}
+
+                <button type="button" class="btn btn-success" onclick="createTemplate()">Save</button>
             </div>
         </div>
     </div>
@@ -26,6 +30,23 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 <script>
+    function createTemplate() {
+        console.log($('#formGenerate').serialize());
+        $.ajax({
+            type: "POST",
+            url: $('#formGenerate').attr('action'),
+            data: $('#formGenerate').serialize(),
+            dataType: "json",
+            encode: true,
+        }).done(function (data) {
+            if (data.status === 200) {
+            } else if (data.status === 422) {
+            }
+        })
+
+        event.preventDefault();
+    }
+
     $(window).on('load', function() {
         let elements = $('#template')[0].firstElementChild.querySelectorAll("div");
 
@@ -46,39 +67,6 @@
         }
     })
 
-    function bindingTemplate(event) {
-        let dataField = event.target.name;
-        let val = event.target.value;
-
-        let element = $('[data-field = ' + dataField + ']');
-
-        element[0].innerHTML = val;
-    }
-
-    function bindingDateTime(event) {
-        let dataField = event.target.name;
-        let val = event.target.value;
-
-        val = moment(val).format('YYYY年MM月DD日HH時mm分');
-
-        let element = $('[data-field = ' + dataField + ']');
-
-        element[0].innerHTML = val;
-    }
-
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function () {
-                $('#' + input.name)
-                    .attr('src', reader.result);
-            };
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
     function getInputType(dataset) {
         let result;
         let type = dataset.type;
@@ -89,11 +77,11 @@
 
         switch (type) {
             case 'input':
-                result = '<input type="text" class="form-control col-8" name=" ' + field + ' " onkeyup="bindingTemplate(event)">';
+                result = '<input type="text" class="form-control col-8" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)" required>';
                 break;
 
             case 'textarea':
-                result = '<textarea class="form-control col-11" name="' + field + '" onkeyup="bindingTemplate(event)"></textarea>';
+                result = '<textarea class="form-control col-11" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)"></textarea>';
                 break;
 
             case 'radio':
@@ -102,8 +90,8 @@
 
                 optionsArr.forEach(function(val) {
                     let inner = '<div class="form-check mr-3" onchange="bindingTemplate(event)">' +
-                        '<input class="form-check-input" type="' + type + '" name="' + field + '" value="' + val + '">' +
-                        '<label class="form-check-label">' + val  + '</label>' +
+                        '<input class="form-check-input" type="'+ type +'" name="' + label + '" data-id="'+ field +'" value="'+ val +'">' +
+                        '<label class="form-check-label">'+ val  +'</label>' +
                         '</div>';
 
                     content += inner;
@@ -120,21 +108,60 @@
                     content += inner;
                 })
 
-                result = '<select class="form-control col-8" name="' + field + '" onchange="bindingTemplate(event)">' + content + '</select>';
+                result = '<select class="form-control col-8" name="'+ label +'" data-id="'+ field +'" onchange="bindingTemplate(event)">' + content + '</select>';
                 break;
 
             case 'file':
                 result = '<label class="custom-file-upload">' +
-                    '<input type="file" class="form-control-file" name="' + field + '" onchange="readURL(this)">' +
+                    '<input type="hidden" name="'+ label +'" id="'+ field +'_form_img">' +
+                    '<input type="file" class="form-control-file" data-id="'+ field +'" onchange="readURL(this)">' +
                     label +
                     '</label>';
                 break;
 
             case 'datetime':
-                result = '<input type="datetime-local" class="form-control col-8" name="' + field + '" onchange="bindingDateTime(event)" onkeyup="bindingDateTime(event)">';
+                result = '<div>' +
+                            '<input type="hidden" name="'+ label +'" id="'+ field +'_form_date">' +
+                            '<input type="datetime-local" class="form-control col-8" data-id="'+ field +'" onchange="bindingDateTime(event)" onkeyup="bindingDateTime(event)">' +
+                        '</div>';
                 break;
         }
 
         return result;
+    }
+
+    function bindingTemplate(event) {
+        let dataId = event.target.getAttribute('data-id');
+        let val = event.target.value;
+
+        let element = $('[data-field = ' + dataId + ']');
+
+        element[0].innerHTML = val;
+    }
+
+    function bindingDateTime(event) {
+        let dataId = event.target.getAttribute('data-id');
+        let val = event.target.value;
+
+        val = moment(val).format('YYYY年MM月DD日HH時mm分');
+
+        let element = $('[data-field = ' + dataId + ']');
+
+        element[0].innerHTML = val;
+        $('#' + dataId + '_form_date')[0].value = val;
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            let dataId = input.getAttribute('data-id');
+            var reader = new FileReader();
+
+            reader.onload = function () {
+                $('#' + dataId).attr('src', reader.result);
+                $('#' + dataId + '_form_img')[0].value = '<img src="'+ reader.result +'" width="350px"/>';
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
     }
 </script>

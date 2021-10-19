@@ -52,7 +52,7 @@ class TemplateController extends Controller
                 return '<div class="d-flex align-items-center url-action">
                             <a href="'. asset($path) .'" target="_blank">'. $template->url .'</a>
                             <a href="'. asset($path) .'" download="'. $template->url .'">
-                               <i class="fa fa-download ml-2"></i>
+                               <i class="fa fa-cloud-download ml-2"></i>
                             </a>
                         </div>';
             })
