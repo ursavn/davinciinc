@@ -27,7 +27,8 @@ class CreateRequest extends FormRequest
             'name' => 'required|max:225',
             'description' => 'max:2000',
             'category_id' => 'required',
-            'file' => 'required'
+            'img_url' => 'required',
+            'html_url' => 'required'
         ];
     }
 }

@@ -28,10 +28,17 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label>Template <span class="text-danger">*</span></label>
-                    <input type="file" class="form-control-file" name="file" accept=".html">
-                    @if ($errors->has('file'))
-                        <span class="text-danger">{{ $errors->first('file') }}</span>
+                    <label>Template image <span class="text-danger">*</span></label>
+                    <input type="file" class="form-control-file" name="img_url">
+                    @if ($errors->has('img_url'))
+                        <span class="text-danger">{{ $errors->first('img_url') }}</span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>Template html<span class="text-danger">*</span></label>
+                    <input type="file" class="form-control-file" name="html_url" accept=".html">
+                    @if ($errors->has('html_url'))
+                        <span class="text-danger">{{ $errors->first('html_url') }}</span>
                     @endif
                 </div>
                 <div class="form-group">

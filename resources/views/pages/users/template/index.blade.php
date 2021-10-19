@@ -11,12 +11,12 @@
     </div>
 
     <div class="select-template__template-list">
-        @foreach ($data as $item)
+        @foreach ($templates as $template)
             <div class="select-template__image-button">
-                {!! $item['template_content'] !!}
+                <img src="{{ asset('storage/templates/image/' . $template->img_url) }}">
                 <div class="overlay">
                     <button class="select-button">
-                        <a href="{{ route('show-template', $item['id']) }}">
+                        <a href="{{ route('show-template', $template->id) }}">
                             このテンプレートで作成する
                         </a>
                     </button>

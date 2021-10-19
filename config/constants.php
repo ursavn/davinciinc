@@ -3,6 +3,9 @@
     return [
         'PATH' => [
             'AVATAR' => 'avatar',
-            'TEMPLATE' => 'templates',
+            'TEMPLATE' => [
+                'HTML' => 'templates/html',
+                'IMAGE' => 'templates/image',
+            ],
         ]
     ];

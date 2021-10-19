@@ -15,8 +15,12 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
     <title>PetFlier Admin</title>
+
+    @stack('styles')
+    @stack('scripts')
 </head>
 
 <body class="c-app">
@@ -31,8 +35,6 @@
         </div>
         @include('includes.footer')
     </div>
-
-    @stack('scripts')
 </body>
 
 </html>

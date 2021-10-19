@@ -18,6 +18,7 @@ class Template extends Model
     protected $fillable = [
         'name',
         'url',
+        'img_url',
         'description',
         'category_id',
         'created_by',
