@@ -18,7 +18,7 @@
 
 <script>
     $(window).on('load', function() {
-        let elements = $('#template')[0].firstElementChild.querySelectorAll(".bind-data");
+        let elements = $('#template')[0].firstElementChild.querySelectorAll(".js-data-bind");
 
         for (let i = 0; i < elements.length ; i ++) {
             let dataset = elements[i].dataset;
