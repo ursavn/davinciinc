@@ -4,14 +4,16 @@
     <div class="template-detail">
         <div class="form-group row template-detail__box">
             <div class="col-6 template-detail__form">
-                <form action="{{ route('templates.create') }}" id="formGenerate">
+                <form action="{{ route('create-template', $template->id) }}" id="formGenerate">
                     @csrf
                 </form>
             </div>
             <div class="col-6 template-detail__sample" id="template">
-                {!! $template !!}
+                {!! $template->content !!}
 
-                <button type="button" class="btn btn-success" onclick="createTemplate()">Save</button>
+                <div class="c-actions text-center mt-5">
+                    <button type="button" class="btn btn-dark" onclick="createTemplate()">Create template</button>
+                </div>
             </div>
         </div>
     </div>
@@ -23,6 +25,9 @@
         padding: 8px 20px;
         color: #ffffff;
         margin-top: 10px;
+    }
+    .form-check {
+        width: auto !important;
     }
 </style>
 

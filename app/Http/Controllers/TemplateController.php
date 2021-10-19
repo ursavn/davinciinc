@@ -3,33 +3,49 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Template;
 use App\Models\UserTemplate;
 
 class TemplateController extends Controller
 {
-    function getAllTemplates()
+    public function getAllTemplates()
     {
-        return view('pages.users.template.index', [
-            'templates' => [1, 2, 3, 4, 5, 6, 7, 8]
-        ]);
+       $templates = Template::all();
+
+       $data = [];
+       foreach ($templates as $key => $template) {
+           $data[$key] = [
+               'id' => $template->id,
+               'template_content' => file_get_contents('storage/templates/' . $template->url)
+           ];
+       }
+
+       return view('pages.users.template.index', [
+           'data' => $data
+       ]);
     }
 
     public function showTemplate($id)
     {
-        // demo
-        $template = file_get_contents('storage/template/meo.html');
+        $template = Template::find($id);
 
-        return view('pages.users.template.show', ['template' => $template]);
+        if ($template) {
+            $template->content = file_get_contents('storage/templates/' . $template->url);
+
+            return view('pages.users.template.show', ['template' => $template]);
+        }
+
+        return redirect()->route('select-template');
     }
 
-    public function createTemplate(Request $request)
+    public function createTemplate($templateId, Request $request)
     {
         unset($request['_token']);
 
         $content = json_encode($request->all());
 
         $data = [
-            'template_id' => 1,
+            'template_id' => $templateId,
             'content' => $content,
         ];
 

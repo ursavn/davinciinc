@@ -36,7 +36,7 @@
     <div class="c-wrapper c-wrapper--with-navbar">
         @include('includes.header')
         <div class="c-body">
-            <main class="c-main">
+            <main class="c-admin-main">
                 <div class="container-fluid">
                     @yield('content')
                 </div>
