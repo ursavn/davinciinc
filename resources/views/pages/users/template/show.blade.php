@@ -19,21 +19,6 @@
     </div>
 @endsection
 
-<<<<<<< HEAD
-=======
-<style>
-    .template-detail__form .custom-file-upload {
-        background: #333333;
-        padding: 8px 20px;
-        color: #ffffff;
-        margin-top: 10px;
-    }
-    .form-check {
-        width: auto !important;
-    }
-</style>
-
->>>>>>> master
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
@@ -85,19 +70,11 @@
 
         switch (type) {
             case 'input':
-<<<<<<< HEAD
                 result = '<input type="text" class="form-control col-5" name=" ' + field + ' " onkeyup="bindingTemplate(event)">';
                 break;
 
             case 'textarea':
                 result = '<textarea class="form-control col-10" rows="4" name="' + field + '" onkeyup="bindingTemplate(event)"></textarea>';
-=======
-                result = '<input type="text" class="form-control col-8" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)" required>';
-                break;
-
-            case 'textarea':
-                result = '<textarea class="form-control col-11" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)"></textarea>';
->>>>>>> master
                 break;
 
             case 'radio':
@@ -105,15 +82,9 @@
                 var optionsArr = options.split(',');
 
                 optionsArr.forEach(function(val) {
-<<<<<<< HEAD
                     let inner = '<div class="form-check" onchange="bindingTemplate(event)">' +
                         '<input class="form-check-input" type="' + type + '" name="' + field + '" value="' + val + '">' +
                         '<label class="form-check-label">' + val  + '</label>' +
-=======
-                    let inner = '<div class="form-check mr-3" onchange="bindingTemplate(event)">' +
-                        '<input class="form-check-input" type="'+ type +'" name="' + label + '" data-id="'+ field +'" value="'+ val +'">' +
-                        '<label class="form-check-label">'+ val  +'</label>' +
->>>>>>> master
                         '</div>';
 
                     content += inner;
