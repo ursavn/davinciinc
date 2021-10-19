@@ -38,14 +38,14 @@ class TemplateController extends Controller
         return redirect()->route('select-template');
     }
 
-    public function createTemplate($id, Request $request)
+    public function createTemplate($templateId, Request $request)
     {
         unset($request['_token']);
 
         $content = json_encode($request->all());
 
         $data = [
-            'template_id' => $id,
+            'template_id' => $templateId,
             'content' => $content,
         ];
 
