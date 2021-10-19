@@ -11,6 +11,9 @@
             <li class="{{ Route::is('admin.templates.index') ? 'active' : '' }}">
                 <i class="fas fa-th-list"></i><a href="{{ route('admin.templates.index') }}">Templates Management</a>
             </li>
+            <li class="{{ Route::is('admin.user-templates.index') ? 'active' : '' }}">
+                <i class="fas fa-th-list"></i><a href="{{ route('admin.user-templates.index') }}">User Templates</a>
+            </li>
         </ul>
         <ul class="nav__bottom">
             <li>

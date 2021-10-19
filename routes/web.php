@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\TemplateController as AdminTemplateController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\UserTemplateController;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +25,7 @@ Route::get('/', function () {
 
 Route::get('/templates', [TemplateController::class, 'getAllTemplates'])->name('select-template');
 Route::get('/templates/{id}', [TemplateController::class, 'showTemplate'])->name('show-template');
+Route::post('/templates/create/{templateId}', [TemplateController::class, 'createTemplate'])->name('create-template');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::name('auth.')->group(function () {
@@ -47,5 +49,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('templates', AdminTemplateController::class);
         Route::get('template-any-data', [AdminTemplateController::class, 'anyData'])->name('templates.any-data');
+
+        Route::resource('user-templates', UserTemplateController::class)->only([
+            'index', 'show'
+        ]);
+        Route::get('user-template-any-data', [UserTemplateController::class, 'anyData'])->name('user-templates.any-data');
     });
 });
