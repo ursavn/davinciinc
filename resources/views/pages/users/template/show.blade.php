@@ -70,11 +70,11 @@
 
         switch (type) {
             case 'input':
-                result = '<input type="text" class="form-control col-5" name=" ' + field + ' " onkeyup="bindingTemplate(event)">';
+                result = '<input type="text" class="form-control col-5" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)">';
                 break;
 
             case 'textarea':
-                result = '<textarea class="form-control col-10" rows="4" name="' + field + '" onkeyup="bindingTemplate(event)"></textarea>';
+                result = '<textarea class="form-control col-10" rows="4" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)"></textarea>';
                 break;
 
             case 'radio':
@@ -83,8 +83,8 @@
 
                 optionsArr.forEach(function(val) {
                     let inner = '<div class="form-check" onchange="bindingTemplate(event)">' +
-                        '<input class="form-check-input" type="' + type + '" name="' + field + '" value="' + val + '">' +
-                        '<label class="form-check-label">' + val  + '</label>' +
+                    '<input class="form-check-input" type="'+ type +'" name="' + label + '" data-id="'+ field +'" value="'+ val +'">' +
+                        '<label class="form-check-label">'+ val  +'</label>' +
                         '</div>';
 
                     content += inner;
@@ -136,12 +136,19 @@
         let dataId = event.target.getAttribute('data-id');
         let val = event.target.value;
 
-        val = moment(val).format('YYYY年MM月DD日HH時mm分');
+        let valFormat = '';
+        valFormat += moment(val).format('YYYY');
+        valFormat += moment(val).format('MM');
+        valFormat += moment(val).format('DD');
+        valFormat += moment(val).format('HH');
+        valFormat += moment(val).format('mm');
+
+        console.log(valFormat);
 
         let element = $('[data-field = ' + dataId + ']');
 
         element[0].innerHTML = val;
-        $('#' + dataId + '_form_date')[0].value = val;
+        $('#' + dataId + '_form_date')[0].value = valFormat;
     }
 
     function readURL(input) {
@@ -151,7 +158,7 @@
 
             reader.onload = function () {
                 $('#' + dataId).attr('src', reader.result);
-                $('#' + dataId + '_form_img')[0].value = '<img src="'+ reader.result +'" width="350px"/>';
+                $('#' + dataId + '_form_img')[0].value = '<div  class="poster__image" style="background-image: url=("'+ reader.result +'")><img src="'+ reader.result +'"/></div>';
             };
 
             reader.readAsDataURL(input.files[0]);
