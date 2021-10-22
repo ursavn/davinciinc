@@ -137,17 +137,17 @@
         let val = event.target.value;
 
         let valFormat = '';
-        valFormat += moment(val).format('YYYY');
-        valFormat += moment(val).format('MM');
-        valFormat += moment(val).format('DD');
-        valFormat += moment(val).format('HH');
-        valFormat += moment(val).format('mm');
+        valFormat += moment(val).format('YYYY') + '<span>年</span>';
+        valFormat += moment(val).format('MM') + '<span>月</span>';
+        valFormat += moment(val).format('DD') + '<span>日</span>';
+        valFormat += moment(val).format('HH') + '<span>時</span>';
+        valFormat += moment(val).format('mm') + '<span>分頃</span>';
 
         console.log(valFormat);
 
         let element = $('[data-field = ' + dataId + ']');
 
-        element[0].innerHTML = val;
+        element[0].innerHTML = valFormat;
         $('#' + dataId + '_form_date')[0].value = valFormat;
     }
 
