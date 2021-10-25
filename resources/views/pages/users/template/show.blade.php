@@ -1,35 +1,24 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="template-detail">
+    <div class="template-detail full-width">
         <div class="form-group row template-detail__box">
-            <div class="col-6 template-detail__form">
+            <div class="col-xl-6 template-detail__form">
                 <form action="{{ route('create-template', $template->id) }}" id="formGenerate">
                     @csrf
                 </form>
             </div>
-            <div class="col-6 template-detail__sample" id="template">
-                {!! $template->content !!}
-
+            <div class="col-xl-6 template-detail__sample" id="template">
+                <div class="template-content__wrapper">
+                    {!! $template->content !!}
+                </div>
                 <div class="c-actions text-center mt-5">
-                    <button type="button" class="btn btn-dark" onclick="createTemplate()">Create template</button>
+                    <button type="button" class="btn btn-dark" onclick="createTemplate()">このデザインで作成</button>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
-<style>
-    .template-detail__form .custom-file-upload {
-        background: #333333;
-        padding: 8px 20px;
-        color: #ffffff;
-        margin-top: 10px;
-    }
-    .form-check {
-        width: auto !important;
-    }
-</style>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
@@ -53,7 +42,7 @@
     }
 
     $(window).on('load', function() {
-        let elements = $('#template')[0].firstElementChild.querySelectorAll("div");
+        let elements = $('#template')[0].firstElementChild.querySelectorAll(".js-data-bind");
 
         for (let i = 0; i < elements.length ; i ++) {
             let dataset = elements[i].dataset;
@@ -82,11 +71,11 @@
 
         switch (type) {
             case 'input':
-                result = '<input type="text" class="form-control col-8" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)" required>';
+                result = '<input type="text" class="form-control col-5" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)">';
                 break;
 
             case 'textarea':
-                result = '<textarea class="form-control col-11" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)"></textarea>';
+                result = '<textarea class="form-control col-10" rows="4" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)"></textarea>';
                 break;
 
             case 'radio':
@@ -94,15 +83,15 @@
                 var optionsArr = options.split(',');
 
                 optionsArr.forEach(function(val) {
-                    let inner = '<div class="form-check mr-3" onchange="bindingTemplate(event)">' +
-                        '<input class="form-check-input" type="'+ type +'" name="' + label + '" data-id="'+ field +'" value="'+ val +'">' +
+                    let inner = '<div class="form-check" onchange="bindingTemplate(event)">' +
+                    '<input class="form-check-input" type="'+ type +'" name="' + label + '" data-id="'+ field +'" value="'+ val +'">' +
                         '<label class="form-check-label">'+ val  +'</label>' +
                         '</div>';
 
                     content += inner;
                 })
 
-                result = '<div class="col-10 row">' + content + '</div>';
+                result = '<div class="group-radio">' + content + '</div>';
                 break;
 
             case 'select':
@@ -148,12 +137,19 @@
         let dataId = event.target.getAttribute('data-id');
         let val = event.target.value;
 
-        val = moment(val).format('YYYY年MM月DD日HH時mm分');
+        let valFormat = '';
+        valFormat += moment(val).format('YYYY') + '<span>年</span>';
+        valFormat += moment(val).format('MM') + '<span>月</span>';
+        valFormat += moment(val).format('DD') + '<span>日</span>';
+        valFormat += moment(val).format('HH') + '<span>時</span>';
+        valFormat += moment(val).format('mm') + '<span>分頃</span>';
+
+        console.log(valFormat);
 
         let element = $('[data-field = ' + dataId + ']');
 
-        element[0].innerHTML = val;
-        $('#' + dataId + '_form_date')[0].value = val;
+        element[0].innerHTML = valFormat;
+        $('#' + dataId + '_form_date')[0].value = valFormat;
     }
 
     function readURL(input) {
@@ -163,7 +159,7 @@
 
             reader.onload = function () {
                 $('#' + dataId).attr('src', reader.result);
-                $('#' + dataId + '_form_img')[0].value = '<img src="'+ reader.result +'" width="350px"/>';
+                $('#' + dataId + '_form_img')[0].value = '<div  class="poster__image" style="background-image: url=("'+ reader.result +'")><img src="'+ reader.result +'"/></div>';
             };
 
             reader.readAsDataURL(input.files[0]);

@@ -1,34 +1,123 @@
-div.c-wrapper .c-body {
-    padding: 20px;
-
-    .c-admin-main {
-        border: 1px solid #dbd2d2ee;
-        border-radius: 5px;
-        padding: 20px 10px;
-
-        .c-header {
-            border-bottom: 1px solid #eeee;
+.c-app.admin {
+    font-size: 14px;
+    .full-width{
+        width: auto;
+        margin-left: unset;
+        margin-right: unset;
+        &--padding{
+            padding: 0;
         }
-
-        .c-content {
-            padding: 20px 0 10px;
-        }
-
-        .c-actions {
-            text-align: end;
-            border-top: 1px solid #eeee;
-            padding-top: 20px;
-
-            a, button {
-                min-width: 80px;
+    }
+    div.c-wrapper--with-navbar {
+        margin-left: 250px;
+        position: relative;
+        min-height: 100vh;
+        .header{
+            padding: 20px 30px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,.1);
+            margin-bottom: 50px;
+            text-align: right;
+            .page-title{
+                font-size: 30px;
             }
         }
-
-        .action-column {
-            a {
-                color: #FFFFFF;
-            }
+        .footer{
+            padding: 20px 0;
         }
-
+        .c-admin-main {
+            padding: 0 15px;
+            margin-bottom: 100px;
+            .c-header {
+                text-align: center;
+                margin-bottom: 50px;
+                h2{
+                    text-transform: uppercase;
+                    padding: 0;
+                    margin: 0;
+                    font-size: 30px;
+                }
+            }
+    
+            .c-content {
+                & > .text-end{
+                    .btn{
+                        padding: 10px 25px;
+                        text-transform: uppercase;
+                        font-size: 12px;
+                        margin-bottom: 20px;
+                    }
+                }
+                .dataTables_wrapper{
+                    .dataTables_length,
+                    .dataTables_filter{
+                        margin-bottom: 10px;
+                        input,
+                        select {
+                            border: 1px solid #ebebeb;
+                        }
+                    }
+                    table{
+                        margin: 0;
+                        width: 100% !important;
+                        &.table-bordered{
+                            border-color: #ebebeb;
+                        }
+                        thead{
+                            tr{
+                                th{
+                                    font-weight: 400;
+                                    text-transform: uppercase;
+                                    font-size: 12px;
+                                    padding: 5px 10px;
+                                    border-color: #ebebeb;
+                                }
+                            }
+                        }
+                        tbody{
+                            tr{
+                                td{
+                                    .btn{
+                                        padding: 7px;
+                                        margin-bottom: 0;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    .dataTables_paginate{
+                        span{
+                            .paginate_button{
+                                border: none;
+                                background: #222;
+                                padding: 2px;
+                                border-radius: 0;
+                                color: #fff !important;
+                            }
+                        }
+                    }
+                }
+                .form-group{
+                    label{
+                        text-transform: capitalize;
+                    }
+                }
+            }
+    
+            .c-actions {
+                text-align: end;
+                padding-top: 20px;
+    
+                a, button {
+                    min-width: 80px;
+                }
+            }
+    
+            .action-column {
+                a {
+                    color: #FFFFFF;
+                }
+            }
+    
+        }
     }
 }

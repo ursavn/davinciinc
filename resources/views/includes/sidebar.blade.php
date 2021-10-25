@@ -49,7 +49,8 @@
             position: fixed;
             height: 100%;
             overflow: auto;
-            font-weight: bold;
+            font-size: 14px;
+            box-shadow: inset 0px 0px 5px rgba(0,0,0,.1);
         }
 
         div.sidebar nav {
@@ -67,24 +68,28 @@
             cursor: pointer;
         }
 
-        .sidebar li>* {
+        .sidebar li > * {
             display: inline-block;
-            color: #b0b0b0;
-            padding: 16px;
+            color: var(--textColor);
+            padding: 12px;
             text-decoration: none;
         }
+        .sidebar li > a {
+            padding-left: 0px;
+        }
 
+        .sidebar li:hover,
         .sidebar li.active {
-            background-color: #e0e0e0;
+            background-color: #222222;
         }
 
-        .sidebar li.active>* {
-            color: #3a3a3a;
+        .sidebar li:hover > *,
+        .sidebar li.active > * {
+            color: #ffffff;
         }
 
-        .sidebar li:hover:not(.active) {
-            background-color: #e0e0e0;
-            color: #b7b7b7;
+        a:not([href]):not([tabindex]):hover {
+            color: #ffffff;
         }
 
         ul {

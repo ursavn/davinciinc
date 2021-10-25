@@ -31,7 +31,7 @@
     @stack('scripts')
 </head>
 
-<body class="c-app">
+<body class="c-app admin">
     @include('includes.sidebar')
     <div class="c-wrapper c-wrapper--with-navbar">
         @include('includes.header')
