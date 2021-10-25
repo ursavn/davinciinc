@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html lang="jp">
+<html lang="jp" class="admin-page">
 
 <head>
     <meta charset="utf-8">

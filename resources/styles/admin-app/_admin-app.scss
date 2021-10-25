@@ -10,8 +10,8 @@
     }
     div.c-wrapper--with-navbar {
         margin-left: 250px;
-        height: 100vh;
         position: relative;
+        min-height: 100vh;
         .header{
             padding: 20px 30px;
             box-shadow: 0px 0px 10px rgba(0,0,0,.1);
@@ -25,9 +25,8 @@
             padding: 20px 0;
         }
         .c-admin-main {
-            padding: 0 20px;
-            min-height: 500px;
-            margin-bottom: 50px;
+            padding: 0 15px;
+            margin-bottom: 100px;
             .c-header {
                 text-align: center;
                 margin-bottom: 50px;
@@ -51,7 +50,7 @@
                 .dataTables_wrapper{
                     .dataTables_length,
                     .dataTables_filter{
-                        margin-bottom: 20px;
+                        margin-bottom: 10px;
                         input,
                         select {
                             border: 1px solid #ebebeb;
@@ -78,7 +77,7 @@
                             tr{
                                 td{
                                     .btn{
-                                        padding: 10px;
+                                        padding: 7px;
                                         margin-bottom: 0;
                                     }
                                 }
@@ -97,12 +96,15 @@
                         }
                     }
                 }
-                
+                .form-group{
+                    label{
+                        text-transform: capitalize;
+                    }
+                }
             }
     
             .c-actions {
                 text-align: end;
-                border-top: 1px solid #eeee;
                 padding-top: 20px;
     
                 a, button {
