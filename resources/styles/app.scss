@@ -33,13 +33,3 @@ div.c-wrapper {
 div.c-wrapper .c-body {
     flex: 1;
 }
-
-div.c-wrapper--with-navbar {
-    margin-left: 250px;
-    height: 100vh;
-    position: relative;
-}
-
-div.c-wrapper--with-navbar .c-body {
-    overflow: auto;
-}

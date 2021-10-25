@@ -3,16 +3,17 @@
 @section('content')
     <div class="template-detail full-width">
         <div class="form-group row template-detail__box">
-            <div class="col-6 template-detail__form">
+            <div class="col-xl-6 template-detail__form">
                 <form action="{{ route('create-template', $template->id) }}" id="formGenerate">
                     @csrf
                 </form>
             </div>
-            <div class="col-6 template-detail__sample" id="template">
-                {!! $template->content !!}
-
+            <div class="col-xl-6 template-detail__sample" id="template">
+                <div class="template-content__wrapper">
+                    {!! $template->content !!}
+                </div>
                 <div class="c-actions text-center mt-5">
-                    <button type="button" class="btn btn-dark" onclick="createTemplate()">Create template</button>
+                    <button type="button" class="btn btn-dark" onclick="createTemplate()">このデザインで作成</button>
                 </div>
             </div>
         </div>
