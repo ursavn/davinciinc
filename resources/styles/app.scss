@@ -5,6 +5,7 @@
 @import "select-template/_detail.scss";
 @import "user-register/_user-register.scss";
 @import "admin-app/admin-app";
+@import "shared/_global.scss";
 
 @font-face {
     font-family: "YuGothic";
@@ -16,6 +17,10 @@
     position: relative;
     min-height: 100vh;
     margin: 0;
+    overflow-x: hidden;
+    color: var(--textColor);
+    font-size: var(--fontSize);
+    font-weight: var(--fontWeight);
 }
 
 div.c-wrapper {
@@ -27,14 +32,4 @@ div.c-wrapper {
 
 div.c-wrapper .c-body {
     flex: 1;
-}
-
-div.c-wrapper--with-navbar {
-    margin-left: 250px;
-    height: 100vh;
-    position: relative;
-}
-
-div.c-wrapper--with-navbar .c-body {
-    overflow: auto;
 }

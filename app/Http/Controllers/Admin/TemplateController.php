@@ -47,7 +47,7 @@ class TemplateController extends Controller
                 return $template->updater ? $template->updater->username : '';
             })
             ->addColumn('url', function ($template) {
-                $path = "storage/templates/" . $template->url;
+                $path = "storage/templates/html/" . $template->url;
 
                 return '<div class="d-flex align-items-center url-action">
                             <a href="'. asset($path) .'" target="_blank">'. $template->url .'</a>
