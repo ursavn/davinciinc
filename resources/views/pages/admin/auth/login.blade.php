@@ -35,8 +35,8 @@
                     <div class="form-group">
                         <input type="password" class="form-control" placeholder="Password" name="password">
                     </div>
-                    <div class="login__action">
-                        <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <div class="login__action text-center">
+                        <button type="submit" class="btn btn-primary btn-flat">Sign In</button>
                     </div>
 {{--                    <div class="login__footer">--}}
 {{--                        <a href="{{ route('admin.auth.get-register') }}">Register new account</a>--}}
