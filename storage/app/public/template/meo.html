@@ -1,289 +1,99 @@
 <div class="template-meo poster">
     <section class="poster__row l-flex">
-        <div id="pet-type" class="poster__text--red poster__text--huge poster__text--shadow js-data-bind" data-field="pet-type" data-label="ペットの種類" data-type="radio" data-options="犬,猫,鳥">犬</div>
+        <div class="poster__pet-type js-data-bind" data-field="pet-type" data-label="ペットの種類" data-type="radio" data-options="犬,猫,鳥">犬</div>
         <div>
-            <div class="poster__text-looking poster__text--red poster__text--large poster__text--shadow">探しています!</div>
-            <div id="datetime-lost" class="js-data-bind" data-field="datetime-lost" data-label="行方が分からなくなった日時" data-type="datetime">
+            <div class="poster__text-looking">探しています!</div>
+            <div class="poster__datetime js-data-bind" data-field="datetime-lost" data-label="行方が分からなくなった日時" data-type="datetime">
                 2017<span>年</span>
                 9<span>月</span>
                 10<span>日</span>
                 14<span>時</span>
                 00<span>分頃</span>
             </div>
-            <div class="l-flex">
-                <div id="lost-place" class="poster__button poster__button--red js-data-bind" data-field="lost-place" data-label="行方が分からなくなった場所" data-type="input">渋谷区</div>
-                <div class="poster__text-missing l-flex-column poster__text--red">
-                    <span><span class="poster__text--small">で</span>行方不明</span>
-                    <span class="poster__text--medium">になりました!</span>
-                </div>
-            </div>
+            <div class="poster__lost-place js-data-bind" data-field="lost-place" data-label="行方が分からなくなった場所" data-type="input">渋谷区</div>
         </div>
     </section>
-    <section class="poster__row--has-col l-flex">
-        <section class="poster__col">
-            <div class="js-data-bind" data-field="image1" data-label="画像アップロード" data-type="file"></div>
-            <div class="poster__image" style='background-image: url("https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg")'>
-                <img id="image1" class="poster__image" src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" alt="your image"/>
-            </div>
+    <section class="poster__row">
+        <section class="poster__col poster__image">
+            <div class="js-data-bind" data-field="image1" data-label="飼い主様のお名前" data-type="file"></div>
+            <img id="image1" src="https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg" alt="your image" />
         </section>
         <section class="poster__col">
             <div class="poster__group-heading">
-                <div class="title poster__text--medium">名前</div>
-                <div id="pet-name" class="content poster__text--center js-data-bind" data-field="pet-name" data-label="名前" data-type="input">こたろう</div>
+                <div class="title">名前</div>
+                <div class="poster__pet-name content js-data-bind" data-field="pet-name" data-label="名前" data-type="input">こたろう</div>
             </div>
             <div class="poster__group-heading">
-                <div class="title poster__text--medium">犬種</div>
-                <div id="pet-breed" class="content poster__text--center js-data-bind" data-field="pet-breed" data-label="犬種" data-type="input">ロングコートチワワ</div>
+                <div class="title">犬種</div>
+                <div class="poster__pet-breed content js-data-bind" data-field="pet-breed" data-label="犬種" data-type="input">ロングコートチワワ</div>
             </div>
             <div class="poster__group-heading">
-                <div class="title poster__text--medium">性別/年齢</div>
-                <div id="pet-gender-age" class="content poster__text--center js-data-bind" data-field="pet-gender-age" data-label="性別/年齢" data-type="input">オス/3歳6ヶ月</div>
-            </div>
-            <div class="poster__group-heading">
-                <div class="title poster__text--medium">迷子になった場所</div>
-                <div id="lost-place2" class="content poster__text--center js-data-bind" data-field="lost-place2" data-label="迷子になった場所" data-type="input">東京都渋谷区</div>
+                <div class="title">性別/年齢</div>
+                <div class="poster__pet-gender-ag content js-data-bind" data-field="pet-gender-age" data-label="性別/年齢" data-type="input">オス/3歳6ヶ月</div>
             </div>
         </section>
     </section>
     <section class="poster__row">
-        <div class="poster__group-heading poster__text--medium">
+        <div class="poster__group-heading">
             <div class="title">特徴・性格</div>
-            <div id="pet-features-personality" class="content js-data-bind" data-field="pet-features-personality" data-label="性別/年齢" data-type="textarea">
+            <div class="poster__pet-features-personality content js-data-bind" data-field="pet-features-personality" data-label="性別/年齢" data-type="textarea">
                 ロングコートチワワの男の子です。 人懐っこい性格、滅多に吠えたりはしません。
             </div>
         </div>
     </section>
     <section class="poster__row">
-        <div class="poster__group-heading poster__text--medium">
+        <div class="poster__group-heading">
             <div class="title">その他 (失踪した状況)</div>
-            <div id="notes" class="content js-data-bind" data-field="notes" data-label="性別/年齢" data-type="textarea">
+            <div class="poster__notes content js-data-bind" data-field="notes" data-label="性別/年齢" data-type="textarea">
                 公園で遊んでいて、大きな音にびっくりして走り出してしまいました。 赤い首輪をしています。すぐ に探しましたが夜になっても見つけてあげられませんでした。 どんな小さな情報でも構いませんの で、 ご連絡お願いします!
             </div>
         </div>
     </section>
     <section class="poster__row">
-        <div class="poster__text-contact poster__text--red poster__text--center"><i class="fas fa-exclamation-triangle"></i>見かけた方はこちらにご連絡をお願いします!</div>
+        <div class="poster__text-contact">見かけた方はこちらにご連絡をお願いします!</div>
     </section>
-    <section class="poster__footer">
-        <section class="poster__row--full-width-red l-flex">
-            <div id="phone-number" class="js-data-bind" data-field="phone-number" data-label="電話番号" data-type="input">090-XXXX-XXXX</div>
-            <div id="twitter" class="poster__text--medium poster__button js-data-bind" data-field="twitter" data-label="ツイッター" data-type="input">kotaro1016</div>
-        </section>
-        <section class="poster__row--full-width-red l-flex-space-between">
-            <div id="email" class="js-data-bind" data-field="email" data-label="Eメール" data-type="input">kotaro_t@wonderful.jp</div>
-            <div id="owners-name" class="js-data-bind" data-field="owners-name" data-label="飼い主様のお名前" data-type="input">田中</div>
-        </section>
+    <section class="poster__row l-flex">
+        <div class="poster__phone-number js-data-bind" data-field="phone-number" data-label="電話番号" data-type="input">090-XXXX-XXXX</div>
+        <div class="poster__twitter js-data-bind" data-field="twitter" data-label="ツイッター" data-type="input">kotaro1016</div>
+    </section>
+    <section class="poster__row">
+        <div class="poster__email js-data-bind" data-field="email" data-label="Eメール" data-type="input">kotaro_t@wonderful.jp</div>
     </section>
 </div>
 
 <style>
-    :root{
-        --bgPoster: #ffe100;
-        --bgPoster2: #fe0711;
-        --colorTxt2: #fe0711;
-        --colorTxt: #222222;
-        --fontSizeSmall: 14px;
-        --fontSizeNormal: 30px;
-        --fontSizeMedium: 17px;
-        --fontSizeLarge: 80px;
-        --fontSizeHuge: 210px;
-    }
     .poster {
         width: 820px;
-        /* height: 1200px; */
+        height: 1200px;
         background: var(--bgPoster);
-        padding: 25px 18px 0 18px;
+        padding: 18px;
         margin: 0 auto;
-        font-size: var(--fontSizeNormal);
-        color: var(--colorTxt);
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -webkit-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
     }
-    .poster__text--small{
-        font-size: var(--fontSizeSmall);
-    }
-    .poster__text--medium{
-        font-size: var(--fontSizeMedium);
-    }
-    .poster__text--large{
-        font-size: var(--fontSizeLarge);
-    }
-    .poster__text--huge{
-        font-size: var(--fontSizeHuge);
-    }
-    .poster__text--red{
-        color: var(--colorTxt2);
-    }
-    .poster__text--center{
-        text-align: center;
-    }
-    .poster__row--full-width-red,
-    .poster__row--has-col,
     .poster__row{
         padding: 0 0 10px 0;
     }
-    .poster__row--has-col{
-        margin: 0 -10px;
-    }
-    .poster__footer{
-        margin: 0 -18px;
-        background: var(--bgPoster2);
-        padding: 20px 30px;
-        color: #fff;
-    }
-    .poster__col{
-        padding: 0 10px;
-    }
-    .l-flex-space-between,
-    .l-flex-column,
     .l-flex{
         display: flex;
         align-items: center;
     }
-    .l-flex-column > *:last-child,
-    .l-flex > *:last-child{
-        flex-grow: 1;
-    }
-    .l-flex-column{
-        flex-direction: column;
-    }
-    .l-flex-space-between{
-        justify-content: space-between;
-    }
-    .poster__button--red,
-    .poster__button{
-        background: #fff;
-        border-radius: 10px;
-        text-align: center;
-        line-height: 1;
-        padding: 15px 150px;
-        display: inline-block;
+    .poster__pet-type{
+        font-size:150px;
+        font-weight: 700;
         color: var(--colorTxt);
-    }
-    .poster__button--red{
-        color: var(--colorTxt2);
-    }
-    .poster__group-heading{
-        min-width: 335px;
-    }
-    .poster__group-heading + .poster__group-heading{
-        margin-top: 15px;
-    }
-    .poster__group-heading .title{
-        background: #222;
-        color:#fff;
-        text-align: center;
-        border-radius: 10px 10px 0 0;
-        height: 30px;
-        line-height: 30px;
-    }
-    .poster__group-heading .content{
-        background: #fff;
-        border-radius: 0 0 10px 10px;
-        padding: 10px;
-    }
-    .poster__text--shadow{
         text-shadow:
             5px 5px 0 #fff,
-            4px 5px 0 #fff,
-            3px 5px 0 #fff,
-            2px 5px 0 #fff,
-            1px 5px 0 #fff,
-            0px 5px 0 #fff,
-            -1px 5px 0 #fff,
-            -2px 5px 0 #fff,
-            -3px 5px 0 #fff,
-            -4px 5px 0 #fff,
-            -5px 5px 0 #fff,
+            4px 5px 0 #000,
+            3px 5px 0 #000,
+            2px 5px 0 #000,
+            1px 5px 0 #000,
+            -1px 5px 0 #000,
+            -2px 5px 0 #000,
+            -3px 5px 0 #000,
+            -4px 5px 0 #000,
             5px -5px 0 #fff,
-            4px -5px 0 #fff,
-            3px -5px 0 #fff,
-            2px -5px 0 #fff,
-            1px -5px 0 #fff,
-            0px -5px 0 #fff,
-            -1px -5px 0 #fff,
-            -2px -5px 0 #fff,
-            -3px -5px 0 #fff,
-            -4px -5px 0 #fff,
-            -5px -5px 0 #fff,
-            5px 4px 0 #fff,
-            5px 3px 0 #fff,
-            5px 2px 0 #fff,
-            5px 1px 0 #fff,
-            5px 0px 0 #fff,
-            5px -4px 0 #fff,
-            5px -3px 0 #fff,
-            5px -2px 0 #fff,
-            5px -1px 0 #fff,
-            -5px 4px 0 #fff,
-            -5px 3px 0 #fff,
-            -5px 2px 0 #fff,
-            -5px 1px 0 #fff,
-            -5px 0px 0 #fff,
-            -5px -4px 0 #fff,
-            -5px -3px 0 #fff,
-            -5px -2px 0 #fff,
-            -5px -1px 0 #fff;
+            -5px 5px 0 #fff;
     }
-    #pet-type{
-        font-weight: 700;
-        line-height: 1;
-    }
-    .poster__text-looking{
-        font-weight: 700;
-        line-height: 1;
-    }
-    #datetime-lost{
-        font-size: 28px;
-    }
-    #lost-place{
-
-    }
-    #datetime-lost span{
-        font-size: var(--fontSizeMedium);
-        margin-right: 5px;
-    }
-    .poster__image{
-        background: var(--bgFirstScreen) no-repeat center/cover;
-        padding-top: 100%;
-        width: 425px
-    }
-    .poster__image img{
-        display: none;
-    }
-    .poster__footer{
-        font-size: 20px;
-    }
-    .poster__footer section:last-child{
-        padding-bottom: 0;
-    }
-    #phone-number{
-        font-weight: 700;
-        margin-right: 20px;
-        width: 350px;
-        line-height: 1;
-        font-size: var(--fontSizeNormal);
-    }
-    #twitter{
-        padding: 5px 100px;
-        border-radius: 5px;
-        line-height: 1;
-    }
-    #twitter:before{
-        content: "\f099";
-        color: #008ec9;
-        font-family: "Font Awesome 5 Brands";
-        margin-right: 10px;
-    }
-    #email{
-        line-height: 1;
-        font-weight: 700;
-    }
-    #owners-name:after{
-        content: "まで";
-        font-size: var(--fontSizeSmall);
+    img {
+        width: 307px;
     }
 </style>
