@@ -9,14 +9,14 @@
             </div>
         </div>
     </div>
-    
+
     <div class="select-template__template-list full-width full-width--padding">
-        @foreach ($data as $item)
+        @foreach ($templates as $template)
             <div class="select-template__image-button">
-                <div class="template-image" style='background-image: url("https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg")'></div>
+                <div class="template-image" style='background-image: url("{{ asset('storage/templates/image/' . $template->img_url) }}")'></div>
                 <div class="overlay">
                     <button class="select-button">
-                        <a href="{{ route('show-template', $item['id']) }}">
+                        <a href="{{ route('show-template', $template->id) }}">
                             このテンプレートで作成する
                         </a>
                     </button>

@@ -12,16 +12,8 @@ class TemplateController extends Controller
     {
        $templates = Template::all();
 
-       $data = [];
-       foreach ($templates as $key => $template) {
-           $data[$key] = [
-               'id' => $template->id,
-               'template_content' => file_get_contents('storage/templates/' . $template->url)
-           ];
-       }
-
        return view('pages.users.template.index', [
-           'data' => $data
+           'templates' => $templates
        ]);
     }
 
@@ -30,7 +22,7 @@ class TemplateController extends Controller
         $template = Template::find($id);
 
         if ($template) {
-            $template->content = file_get_contents('storage/templates/' . $template->url);
+            $template->content = file_get_contents('storage/templates/html/' . $template->url);
 
             return view('pages.users.template.show', ['template' => $template]);
         }

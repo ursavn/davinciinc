@@ -47,7 +47,7 @@ class TemplateController extends Controller
                 return $template->updater ? $template->updater->username : '';
             })
             ->addColumn('url', function ($template) {
-                $path = "storage/templates/" . $template->url;
+                $path = "storage/templates/html/" . $template->url;
 
                 return '<div class="d-flex align-items-center url-action">
                             <a href="'. asset($path) .'" target="_blank">'. $template->url .'</a>
@@ -102,12 +102,20 @@ class TemplateController extends Controller
 
         $data['created_by'] = Auth::user()->id;
 
-        if ($request->hasFile('file')) {
-            $fileName = $request->file('file')->getClientOriginalName();
+        if ($request->hasFile('html_url')) {
+            $fileName = $request->file('html_url')->getClientOriginalName();
 
-            $request->file('file')->storeAs(Config::get('constants.PATH.TEMPLATE'), $fileName);
+            $request->file('html_url')->storeAs(Config::get('constants.PATH.TEMPLATE.HTML'), $fileName);
 
             $data['url'] = $fileName;
+        }
+
+        if ($request->hasFile('img_url')) {
+            $fileName = $request->file('img_url')->getClientOriginalName();
+
+            $request->file('img_url')->storeAs(Config::get('constants.PATH.TEMPLATE.IMAGE'), $fileName);
+
+            $data['img_url'] = $fileName;
         }
 
         Template::create($data);
@@ -167,17 +175,20 @@ class TemplateController extends Controller
 
         $data['updated_by'] = Auth::user()->id;
 
-        if ($request->hasFile('file')) {
-            $oldFile = Config::get('constants.PATH.TEMPLATE') . '/' . $request->old_file;
+        if ($request->hasFile('html_url')) {
+            $fileName = $request->file('html_url')->getClientOriginalName();
 
-            $path = public_path('storage/') . $oldFile;
-
-            if (file_exists($path)) unlink($path);
-
-            $fileName = $request->file('file')->getClientOriginalName();
-            $request->file('file')->storeAs(Config::get('constants.PATH.TEMPLATE'), $fileName);
+            $request->file('html_url')->storeAs(Config::get('constants.PATH.TEMPLATE.HTML'), $fileName);
 
             $data['url'] = $fileName;
+        }
+
+        if ($request->hasFile('img_url')) {
+            $fileName = $request->file('img_url')->getClientOriginalName();
+
+            $request->file('img_url')->storeAs(Config::get('constants.PATH.TEMPLATE.IMAGE'), $fileName);
+
+            $data['img_url'] = $fileName;
         }
 
         $template->update($data);

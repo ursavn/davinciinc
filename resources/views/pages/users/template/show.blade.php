@@ -20,9 +20,7 @@
     </div>
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
-
+@push('scripts')
 <script>
     function createTemplate() {
         console.log($('#formGenerate').serialize());
@@ -38,8 +36,8 @@
             }
         })
 
-        event.preventDefault();
-    }
+            event.preventDefault();
+        }
 
     $(window).on('load', function() {
         let elements = $('#template')[0].firstElementChild.querySelectorAll(".js-data-bind");
@@ -69,30 +67,30 @@
         let options = dataset.options;
         let content = '';
 
-        switch (type) {
-            case 'input':
-                result = '<input type="text" class="form-control col-5" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)">';
-                break;
+    switch (type) {
+        case 'input':
+            result = '<input type="text" class="form-control col-5" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)">';
+            break;
 
-            case 'textarea':
-                result = '<textarea class="form-control col-10" rows="4" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)"></textarea>';
-                break;
+        case 'textarea':
+            result = '<textarea class="form-control col-10" rows="4" name="'+ label +'" data-id="'+ field +'" onkeyup="bindingTemplate(event)"></textarea>';
+            break;
 
             case 'radio':
             case 'checkbox':
                 var optionsArr = options.split(',');
 
-                optionsArr.forEach(function(val) {
-                    let inner = '<div class="form-check" onchange="bindingTemplate(event)">' +
-                    '<input class="form-check-input" type="'+ type +'" name="' + label + '" data-id="'+ field +'" value="'+ val +'">' +
-                        '<label class="form-check-label">'+ val  +'</label>' +
-                        '</div>';
+            optionsArr.forEach(function(val) {
+                let inner = '<div class="form-check" onchange="bindingTemplate(event)">' +
+                '<input class="form-check-input" type="'+ type +'" name="' + label + '" data-id="'+ field +'" value="'+ val +'">' +
+                    '<label class="form-check-label">'+ val  +'</label>' +
+                    '</div>';
 
                     content += inner;
                 })
 
-                result = '<div class="group-radio">' + content + '</div>';
-                break;
+            result = '<div class="group-radio">' + content + '</div>';
+            break;
 
             case 'select':
                 var optionsArr = options.split(',');
@@ -115,9 +113,9 @@
 
             case 'datetime':
                 result = '<div>' +
-                            '<input type="hidden" name="'+ label +'" id="'+ field +'_form_date">' +
-                            '<input type="datetime-local" class="form-control col-8" data-id="'+ field +'" onchange="bindingDateTime(event)" onkeyup="bindingDateTime(event)">' +
-                        '</div>';
+                    '<input type="hidden" name="'+ label +'" id="'+ field +'_form_date">' +
+                    '<input type="datetime-local" class="form-control col-8" data-id="'+ field +'" onchange="bindingDateTime(event)">' +
+                    '</div>';
                 break;
         }
 
@@ -144,8 +142,6 @@
         valFormat += moment(val).format('HH') + '<span>時</span>';
         valFormat += moment(val).format('mm') + '<span>分頃</span>';
 
-        console.log(valFormat);
-
         let element = $('[data-field = ' + dataId + ']');
 
         element[0].innerHTML = valFormat;
@@ -158,11 +154,12 @@
             var reader = new FileReader();
 
             reader.onload = function () {
-                $('#' + dataId).attr('src', reader.result);
-                $('#' + dataId + '_form_img')[0].value = '<div  class="poster__image" style="background-image: url=("'+ reader.result +'")><img src="'+ reader.result +'"/></div>';
+                $('#' + dataId)[0].style.backgroundImage = 'url('+ reader.result +')';
+                $('#' + dataId + '_form_img')[0].value = '<img src="'+ reader.result +'" width="300px"/>';
             };
 
             reader.readAsDataURL(input.files[0]);
         }
     }
 </script>
+@endpush
