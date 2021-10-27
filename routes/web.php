@@ -26,6 +26,7 @@ Route::get('/', function () {
 Route::get('/templates', [TemplateController::class, 'getAllTemplates'])->name('select-template');
 Route::get('/templates/{id}', [TemplateController::class, 'showTemplate'])->name('show-template');
 Route::post('/templates/create/{templateId}', [TemplateController::class, 'createTemplate'])->name('create-template');
+Route::post('/templates/download', [TemplateController::class, 'downloadTemplate'])->name('download-template');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::name('auth.')->group(function () {

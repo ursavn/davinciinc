@@ -8,13 +8,15 @@ use App\Models\UserTemplate;
 
 class TemplateController extends Controller
 {
+    protected $dirView = 'pages.users.template.';
+
     public function getAllTemplates()
     {
-       $templates = Template::all();
+        $templates = Template::all();
 
-       return view('pages.users.template.index', [
-           'templates' => $templates
-       ]);
+        return view($this->dirView . 'index', [
+            'templates' => $templates
+        ]);
     }
 
     public function showTemplate($id)
@@ -24,7 +26,7 @@ class TemplateController extends Controller
         if ($template) {
             $template->content = file_get_contents('storage/templates/html/' . $template->url);
 
-            return view('pages.users.template.show', ['template' => $template]);
+            return view($this->dirView . 'create', ['template' => $template]);
         }
 
         return redirect()->route('select-template');
@@ -32,17 +34,36 @@ class TemplateController extends Controller
 
     public function createTemplate($templateId, Request $request)
     {
-        unset($request['_token']);
+        $template = Template::find($templateId);
 
-        $content = json_encode($request->all());
+        if ($template) {
+            unset($request['_token']);
+            $htmlUrl = $request->html_url;
 
-        $data = [
-            'template_id' => $templateId,
-            'content' => $content,
-        ];
+            UserTemplate::create([
+                'template_id' => $templateId,
+                'content' => json_encode($request->content),
+            ]);
 
-        UserTemplate::create($data);
+            return response([
+                'status' => 200,
+                'content' => $request->content
+            ]);
+        }
 
-        return 1;
+        return response([
+            'status' => 500,
+            'message' => Config::get('messages.not_found_data')
+        ]);
+    }
+
+    public function downloadTemplate(Request $request)
+    {
+        $html = file_get_contents('storage/templates/html/' . $request->html_url);
+
+        return view($this->dirView . 'download', [
+            'html' => $html,
+            'content' => $request->content
+        ]);
     }
 }

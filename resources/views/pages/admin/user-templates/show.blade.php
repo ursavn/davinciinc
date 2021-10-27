@@ -8,8 +8,14 @@
         <div class="c-content">
             @foreach($content as $key => $val)
                 <div class="user-template-list__content">
-                    <div>{!! $key !!}</div>
-                    <div>{!! $val !!}</div>
+                    <div><span>{!! $val->label !!}</span></div>
+                    <div>
+                        @if($val->type === 'file')
+                            <img src="{{ $val->value }}" width="350px">
+                        @else
+                            <span>{!! $val->value !!}</span>
+                        @endif
+                    </div>
                 </div>
             @endforeach
         </div>
