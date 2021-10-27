@@ -3,13 +3,11 @@
 
 @section('content')
     <div class="form-group row">
-        <div class="">
-            <div id="template">
-                {!! $html !!}
-            </div>
-            <div class="c-actions text-center mt-4">
-                <button type="button" class="btn btn-dark" onclick="exportPdf()">Download Pdf</button>
-            </div>
+        <div id="template">
+            {!! $html !!}
+        </div>
+        <div class="c-actions text-center mt-4">
+            <button type="button" class="btn btn-dark" onclick="exportPdf()">Download Pdf</button>
         </div>
     </div>
 @endsection
