@@ -42,8 +42,8 @@
             }
         })
 
-        event.preventDefault();
-    }
+            event.preventDefault();
+        }
 
     function postRedirect(content) {
         let mapForm = document.createElement("form");
@@ -106,11 +106,11 @@
 
         switch (type) {
             case 'input':
-                result = '<input type="text" class="form-control col-5 form-data" name="'+ field +'" onkeyup="bindingTemplate(event)">';
+                result = '<input type="text" class="form-control col-5" name="'+ field +'" onkeyup="bindingTemplate(event)">';
                 break;
 
             case 'textarea':
-                result = '<textarea class="form-control col-10 form-data" rows="3" name="'+ field +'" onkeyup="bindingTemplate(event)"></textarea>';
+                result = '<textarea class="form-control col-10" rows="3" name="'+ field +'" onkeyup="bindingTemplate(event)"></textarea>';
                 break;
 
             case 'radio':
@@ -119,7 +119,7 @@
 
                 optionsArr.forEach(function(val) {
                     let inner = '<div class="form-check" onchange="bindingTemplate(event)">' +
-                    '<input class="form-check-input form-data" type="'+ type +'" name="' + field + '" value="'+ val +'">' +
+                    '<input class="form-check-input" type="'+ type +'" name="' + field + '" value="'+ val +'">' +
                         '<label class="form-check-label">'+ val +'</label>' +
                         '</div>';
 
@@ -137,7 +137,7 @@
                     content += inner;
                 })
 
-                result = '<select class="form-control col-8 form-data" name="'+ field +'" onchange="bindingTemplate(event)">' + content + '</select>';
+                result = '<select class="form-control col-8" name="'+ field +'" onchange="bindingTemplate(event)">' + content + '</select>';
                 break;
 
             case 'file':
