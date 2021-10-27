@@ -9,15 +9,15 @@
         </button>
         <div class="dropdown-menu" aria-labelledby="dropdown">
             <a href="{{ route('admin.users.edit', Auth::user()->id) }}" class="dropdown-item">
-                <i class="fas fa-user-circle"></i>
+                <i class="fas fa-user-circle mr-1"></i>
                 Edit profile
             </a>
             <button class="dropdown-item" type="button" id="resetPassBtn" data-toggle="modal" data-target="#resetPasswordModal">
-                <i class="fas fa-lock"></i>
+                <i class="fas fa-lock mr-1"></i>
                 Reset password
             </button>
             <a href="{{ route('admin.auth.get-logout') }}" class="dropdown-item">
-                <i class="fas fa-sign-out-alt"></i>
+                <i class="fas fa-sign-out-alt mr-1"></i>
                 Log out
             </a>
         </div>

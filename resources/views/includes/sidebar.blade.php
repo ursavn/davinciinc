@@ -95,15 +95,6 @@
             color: #24292e;
         }
 
-        /*.sidebar li:hover > *,*/
-        /*.sidebar li.active > * {*/
-        /*    color: #ffffff;*/
-        /*}*/
-
-        /*a:not([href]):not([tabindex]):hover {*/
-        /*    color: #ffffff;*/
-        /*}*/
-
         ul {
             padding: 0;
             list-style-type: none;
