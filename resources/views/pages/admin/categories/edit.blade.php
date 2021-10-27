@@ -3,7 +3,7 @@
 @section('content')
     <div class="category_create">
         <div class="c-header">
-            <h2>Update Category</h2>
+            <h2>Edit Category</h2>
         </div>
         <form action="{{ route('admin.categories.update', $category->id) }}" method="post">
             @csrf
@@ -23,10 +23,10 @@
                         <span class="text-danger">{{ $errors->first('description') }}</span>
                     @endif
                 </div>
-            </div>
-            <div class="category_create--footer c-actions">
-                <a href="{{ route('admin.categories.index') }}" class="btn btn-dark">Back</a>
-                <button type="submit" class="btn btn-success">Save</button>
+                <div class="category_create--footer c-actions">
+                    <a href="{{ route('admin.categories.index') }}" class="btn btn-dark">Back</a>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
             </div>
         </form>
     </div>

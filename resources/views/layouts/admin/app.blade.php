@@ -34,7 +34,7 @@
 <body class="c-app admin">
     @include('includes.sidebar')
     <div class="c-wrapper c-wrapper--with-navbar">
-        @include('includes.header')
+        @include('includes.admin-header')
         <div class="c-body">
             <main class="c-admin-main">
                 <div class="container-fluid">

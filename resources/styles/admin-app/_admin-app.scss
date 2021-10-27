@@ -1,5 +1,5 @@
 .c-app.admin {
-    font-size: 14px;
+    font-size: 16px;
     .full-width{
         width: auto;
         margin-left: unset;
@@ -13,23 +13,47 @@
         position: relative;
         min-height: 100vh;
         .header{
-            padding: 20px 30px;
+            height: 60px;
+            padding: 10px 20px;
             box-shadow: 0px 0px 10px rgba(0,0,0,.1);
-            margin-bottom: 50px;
-            text-align: right;
-            .page-title{
-                font-size: 30px;
+            text-align: -webkit-right;
+            border-bottom: 1px solid #dee2e6;
+            .avatar {
+                width: 43px;
+                height: 43px;
+                border: none;
+                background: content-box;
+                padding: 0;
+                img {
+                    width: 100%;
+                    border-radius: 50%;
+                }
+            }
+            .avatar:focus,
+            .avatar:focus:active
+            {
+                outline: none;
+                border: none;
+            }
+            .dropdown-toggle::after {
+                content: none;
+            }
+            .dropdown-item:focus, .dropdown-item:hover {
+                color: rgba(255,255,255,.9);
+                background-color: #343a40;
             }
         }
         .footer{
             padding: 20px 0;
         }
+        .c-body {
+            background: #f4f6f9;
+            padding: 30px 5px;
+        }
         .c-admin-main {
-            padding: 0 15px;
-            margin-bottom: 100px;
             .c-header {
                 text-align: center;
-                margin-bottom: 50px;
+                margin-bottom: 30px;
                 h2{
                     text-transform: uppercase;
                     padding: 0;
@@ -37,8 +61,12 @@
                     font-size: 30px;
                 }
             }
-    
+
             .c-content {
+                background: white;
+                padding: 20px;
+                border: 1px solid rgba(0,0,0,.125);
+                border-radius: 5px;
                 & > .text-end{
                     .btn{
                         padding: 10px 25px;
@@ -64,6 +92,7 @@
                         }
                         thead{
                             tr{
+                                background: #fff;
                                 th{
                                     font-weight: 400;
                                     text-transform: uppercase;
@@ -102,22 +131,22 @@
                     }
                 }
             }
-    
+
             .c-actions {
-                text-align: end;
+                text-align: center;
                 padding-top: 20px;
-    
+
                 a, button {
                     min-width: 80px;
                 }
             }
-    
+
             .action-column {
                 a {
                     color: #FFFFFF;
                 }
             }
-    
+
         }
     }
 }

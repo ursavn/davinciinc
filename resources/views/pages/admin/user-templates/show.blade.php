@@ -18,9 +18,9 @@
                     </div>
                 </div>
             @endforeach
-        </div>
-        <div class="c-actions">
-            <a href="{{ route('admin.user-templates.index') }}" class="btn btn-dark">Back</a>
+            <div class="c-actions">
+                <a href="{{ route('admin.user-templates.index') }}" class="btn btn-dark">Back</a>
+            </div>
         </div>
     </div>
 @endsection

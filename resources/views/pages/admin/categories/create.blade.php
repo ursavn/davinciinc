@@ -22,10 +22,10 @@
                         <span class="text-danger">{{ $errors->first('description') }}</span>
                     @endif
                 </div>
-            </div>
-            <div class="category_create--footer c-actions">
-                <a href="{{ route('admin.categories.index') }}" class="btn btn-dark">Back</a>
-                <button type="submit" class="btn btn-success">Save</button>
+                <div class="category_create--footer c-actions">
+                    <a href="{{ route('admin.categories.index') }}" class="btn btn-dark">Back</a>
+                    <button type="submit" class="btn btn-success">Save</button>
+                </div>
             </div>
         </form>
     </div>

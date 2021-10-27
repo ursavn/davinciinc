@@ -3,12 +3,18 @@
 @section('content')
     <div class="user-create">
         <div class="c-header">
-            <h2>Create User</h2>
+            @if ($isMe === true)
+                <h2>Edit Profile</h2>
+            @else
+                <h2>Edit User</h2>
+            @endif
         </div>
         <form action="{{ route('admin.users.update', $user) }}" method="post" enctype="multipart/form-data">
             @csrf
             @method('PUT')
+            <input type="hidden" name="isMe" value="{{ $isMe }}">
             <div class="c-content">
+                @include('includes/alert-block')
                 <div class="form-group d-flex flex-column mb-0">
                     <div class="user-create__avatar">
                         @if ($user->avatar == "")
