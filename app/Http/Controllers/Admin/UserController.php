@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function anyData()
     {
-        $users = User::all();
+        $users = User::where('id', '!=', Auth::user()->id)->get();
 
         return DataTables::of($users)
             ->addColumn('role', function ($user) {
@@ -127,18 +127,21 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user  = User::find($id);
+        $user = User::find($id);
 
         if (!$user) {
 
             return redirect()->route('admin.users.index')->with('error', Config::get('messages.not_found_data'));
         }
 
+        $isMe = $id == Auth::user()->id;
+
         $roles = User::$roles;
 
         return view('pages.admin.users.edit', [
             'user'  => $user,
-            'roles' => $roles
+            'roles' => $roles,
+            'isMe'  => $isMe
         ]);
     }
 
@@ -170,6 +173,10 @@ class UserController extends Controller
         }
 
         $user->update($data);
+
+        if ($request->isMe) {
+            return redirect()->route('admin.users.edit', $id)->with('success', Config::get('messages.update_success'));
+        }
 
         return redirect()->route('admin.users.index')->with('success', Config::get('messages.update_success'));
     }

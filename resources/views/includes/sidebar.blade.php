@@ -1,5 +1,8 @@
 <div class="sidebar">
     {{-- TODO: refactor --}}
+    <div class="title">
+        <p>PetFlier</p>
+    </div>
     <nav id="nav">
         <ul class="nav__top">
             <li class="{{ Route::is('admin.users.index') ? 'active' : '' }}">
@@ -13,15 +16,6 @@
             </li>
             <li class="{{ Route::is('admin.user-templates.index') ? 'active' : '' }}">
                 <i class="fas fa-th-list"></i><a href="{{ route('admin.user-templates.index') }}">User Templates</a>
-            </li>
-        </ul>
-        <ul class="nav__bottom">
-            <li>
-                <i class="fas fa-sign-out-alt"></i>
-                <a type="button" id="resetPassBtn" data-toggle="modal" data-target="#resetPasswordModal">Reset password</a>
-            </li>
-            <li>
-                <i class="fas fa-sign-out-alt"></i><a href="{{ route('admin.auth.get-logout') }}">Log out</a>
             </li>
         </ul>
     </nav>
@@ -45,12 +39,20 @@
             margin: 0;
             padding: 0;
             width: 250px;
-            background-color: #f7f7f7;
+            background-color: #343a40;
             position: fixed;
             height: 100%;
-            overflow: auto;
-            font-size: 14px;
+            font-size: 16px;
             box-shadow: inset 0px 0px 5px rgba(0,0,0,.1);
+        }
+
+        div.sidebar .title {
+            height: 60px;
+            border-bottom: 1px solid #4b545c;
+            color: #c2c7d0;
+            font-size: 30px;
+            text-align: center;
+            line-height: 2;
         }
 
         div.sidebar nav {
@@ -58,19 +60,20 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
+            padding: 0 7px;
         }
 
-        div.sidebar nav ul.nav__bottom {
-            margin: 0;
+        .sidebar li {
+            margin: 5px 0;
+            border-radius: 3px;
         }
 
         .sidebar li:hover {
-            cursor: pointer;
         }
 
         .sidebar li > * {
             display: inline-block;
-            color: var(--textColor);
+            color: #c2c7d0;
             padding: 12px;
             text-decoration: none;
         }
@@ -78,19 +81,28 @@
             padding-left: 0px;
         }
 
-        .sidebar li:hover,
+        .sidebar li:hover {
+            cursor: pointer;
+            background-color: rgba(255,255,255,.1);
+            color: #fff;
+        }
+
         .sidebar li.active {
-            background-color: #222222;
+            background-color: rgba(255,255,255,.9);
         }
 
-        .sidebar li:hover > *,
         .sidebar li.active > * {
-            color: #ffffff;
+            color: #24292e;
         }
 
-        a:not([href]):not([tabindex]):hover {
-            color: #ffffff;
-        }
+        /*.sidebar li:hover > *,*/
+        /*.sidebar li.active > * {*/
+        /*    color: #ffffff;*/
+        /*}*/
+
+        /*a:not([href]):not([tabindex]):hover {*/
+        /*    color: #ffffff;*/
+        /*}*/
 
         ul {
             padding: 0;

@@ -6,7 +6,7 @@
         <div id="template">
             {!! $html !!}
         </div>
-        <div class="c-actions text-center mt-4">
+        <div class="c-actions text-center mt-4 mb-3">
             <button type="button" class="btn btn-dark" onclick="exportPdf()">Download Pdf</button>
         </div>
     </div>
