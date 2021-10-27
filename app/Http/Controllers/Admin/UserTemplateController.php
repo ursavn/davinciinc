@@ -56,7 +56,7 @@ class UserTemplateController extends Controller
             return redirect()->route('admin.user-templates.index')->with('error', Config::get('messages.not_found_data'));
         }
 
-        $content = json_decode($userTemplate->content);
+        $content = (array)json_decode($userTemplate->content);
 
         return view('pages.admin.user-templates.show', [
             'userTemplate' => $userTemplate,
