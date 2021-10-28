@@ -34,17 +34,22 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label>Template image</label>
-                    <input type="file" class="form-control-file" name="img_url">
-                    @if ($errors->has('img_url'))
-                        <span class="text-danger">{{ $errors->first('img_url') }}</span>
+                    <label>Template html</label>
+                    <input type="file" class="form-control-file" name="html_url" alt="{{ $template->url }}" accept=".html">
+                    @if ($errors->has('html_url'))
+                        <span class="text-danger">{{ $errors->first('html_url') }}</span>
                     @endif
                 </div>
                 <div class="form-group">
-                    <label>Template html</label>
-                    <input type="file" class="form-control-file" name="html_url" accept=".html">
-                    @if ($errors->has('html_url'))
-                        <span class="text-danger">{{ $errors->first('html_url') }}</span>
+                    <label>Template image</label>
+                    <div class="template-img">
+                        @if ($template->img_url)
+                            <img src="{{ asset('storage/templates/image/' . $template->img_url) }}" width="300px" class="mb-2">
+                        @endif
+                    </div>
+                    <input type="file" class="form-control-file" name="img_url" onchange="readURL(this)" accept=".jpg,.png,.jpeg">
+                    @if ($errors->has('img_url'))
+                        <span class="text-danger">{{ $errors->first('img_url') }}</span>
                     @endif
                 </div>
                 <div class="form-group">
@@ -62,3 +67,18 @@
         </form>
     </div>
 @endsection
+
+
+@push('scripts')
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $('.template-img').html('<img src="'+ reader.result +'" width="300px" class="mb-2" />');
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endpush

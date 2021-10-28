@@ -28,17 +28,18 @@
                     @endif
                 </div>
                 <div class="form-group">
-                    <label>Template image <span class="text-danger">*</span></label>
-                    <input type="file" class="form-control-file" name="img_url">
-                    @if ($errors->has('img_url'))
-                        <span class="text-danger">{{ $errors->first('img_url') }}</span>
-                    @endif
-                </div>
-                <div class="form-group">
                     <label>Template html<span class="text-danger">*</span></label>
                     <input type="file" class="form-control-file" name="html_url" accept=".html">
                     @if ($errors->has('html_url'))
                         <span class="text-danger">{{ $errors->first('html_url') }}</span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>Template image <span class="text-danger">*</span></label>
+                    <div class="template-img"></div>
+                    <input type="file" class="form-control-file" name="img_url" onchange="readURL(this)" accept=".jpg,.png,.jpeg">
+                    @if ($errors->has('img_url'))
+                        <span class="text-danger">{{ $errors->first('img_url') }}</span>
                     @endif
                 </div>
                 <div class="form-group">
@@ -56,3 +57,17 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $('.template-img').html('<img src="'+ reader.result +'" width="300px" class="mb-2" />');
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endpush
