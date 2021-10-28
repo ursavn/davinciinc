@@ -13,17 +13,17 @@
 
         &:nth-child(1){
             .type-image{
-                background-image: url("https://i.kym-cdn.com/entries/icons/original/000/035/699/pepe.jpg");
+                background-image: url("https://cdn.britannica.com/48/167648-050-E9902D71/Shiba-inu.jpg");
             }
         }
         &:nth-child(2){
             .type-image{
-                background-image: url("https://external-preview.redd.it/xPTu85KZxiSgka88xucW9vF5loOYdzLfgvvWWMCkVEI.jpg?auto=webp&s=6cef5f96dd4a1cb47e7b703ad674e29254e12983");
+                background-image: url("https://i.pinimg.com/originals/3b/c0/08/3bc008a7fd3695ebb48f1c599a7e8275.png");
             }
         }
         &:nth-child(3){
             .type-image{
-                background-image: url("https://i.kym-cdn.com/entries/icons/original/000/013/564/doge.jpg");
+                background-image: url("https://i.pinimg.com/originals/c4/72/8c/c4728cc3b4f98be5b51c91fd01b30c06.jpg");
             }
         }
 
@@ -77,7 +77,7 @@
         div.overlay {
             transition: 0.3s;
             &:hover {
-                background-color: rgba(200, 200, 200, 0.2);
+                background-color: rgba(0, 0, 0, 0.2);
             }
         }
     }

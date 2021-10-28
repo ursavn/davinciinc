@@ -42,7 +42,7 @@
             background-color: #343a40;
             position: fixed;
             height: 100%;
-            font-size: 16px;
+            font-size: 13px;
             box-shadow: inset 0px 0px 5px rgba(0,0,0,.1);
         }
 
