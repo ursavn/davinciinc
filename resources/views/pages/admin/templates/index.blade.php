@@ -19,8 +19,8 @@
                     <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Image</th>
                         <th>Name</th>
-                        <th>Url</th>
                         <th>Description</th>
                         <th>Category</th>
                         <th>Created At</th>
@@ -52,8 +52,8 @@
                 ajax: '{!! route('admin.templates.any-data') !!}',
                 columns: [
                     { data: 'id', name: 'id' },
+                    { data: 'img', name: 'img' },
                     { data: 'name', name: 'name' },
-                    { data: 'url', name: 'url' },
                     { data: 'description', name: 'description' },
                     { data: 'category', name: 'category' },
                     { data: 'created_at', name: 'created_at' },

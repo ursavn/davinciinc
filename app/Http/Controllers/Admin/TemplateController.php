@@ -46,18 +46,20 @@ class TemplateController extends Controller
             ->addColumn('updater', function ($template) {
                 return $template->updater ? $template->updater->username : '';
             })
-            ->addColumn('url', function ($template) {
-                $path = "storage/templates/html/" . $template->url;
+            ->addColumn('img', function ($template) {
+                $path = "storage/templates/image/" . $template->img_url;
 
-                return '<div class="d-flex align-items-center url-action">
-                            <a href="'. asset($path) .'" target="_blank">'. $template->url .'</a>
-                            <a href="'. asset($path) .'" download="'. $template->url .'">
-                               <i class="fa fa-cloud-download ml-2"></i>
-                            </a>
-                        </div>';
+                return '<img src="'. asset($path) .'" width="100px" />';
             })
             ->addColumn('action', function ($template) {
+                $path = "storage/templates/html/" . $template->url;
+
                 return '<div class="d-flex">
+                            <div class="">
+                                <a href="'. asset($path) .'" download="'. $template->url .'" class="btn btn-sm btn-dark mr-1">
+                                   <i class="fa fa-cloud-download"></i>
+                                </a>
+                            </div>
                             <div>
                                 <a href="'. route('admin.templates.edit', $template) .'" class="btn btn-sm btn-info mr-1">
                                     <i class="fa fa-edit"></i>
@@ -72,7 +74,7 @@ class TemplateController extends Controller
                             </form>
                         </div>';
             })
-            ->rawColumns(['url', 'category', 'creator', 'updated_by', 'action'])
+            ->rawColumns(['img', 'category', 'creator', 'updated_by', 'action'])
             ->make(true);
     }
 
