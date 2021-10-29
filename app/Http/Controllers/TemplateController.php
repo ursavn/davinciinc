@@ -12,7 +12,7 @@ class TemplateController extends Controller
 
     public function getAllTemplates()
     {
-        $templates = Template::all();
+        $templates = Template::paginate(8);
 
         return view($this->dirView . 'index', [
             'templates' => $templates
