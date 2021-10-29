@@ -16,7 +16,7 @@
                 <div class="template-image" style='background-image: url("{{ asset('storage/templates/image/' . $template->img_url) }}")'></div>
                 <div class="overlay">
                     <button class="select-button">
-                        <a href="{{ route('show-template', $template->id) }}">
+                        <a href="{{ route('show-template', [$category->id, $template->id]) }}">
                             このテンプレートで作成する
                         </a>
                     </button>

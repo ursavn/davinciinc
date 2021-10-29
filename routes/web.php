@@ -22,8 +22,8 @@ use App\Http\Controllers\CategoryController as UserCategoryController;
 
 Route::get('/', [UserCategoryController::class, 'getAllCategories'])->name('home');
 
-Route::get('/templates/category/{categoryId}', [TemplateController::class, 'getTemplatesByCategory'])->name('select-template-by-category');
-Route::get('/templates/{id}', [TemplateController::class, 'showTemplate'])->name('show-template');
+Route::get('/category/{categoryId}/templates', [TemplateController::class, 'getTemplatesByCategory'])->name('select-template-by-category');
+Route::get('/category/{categoryId}/templates/{templateId}', [TemplateController::class, 'showTemplate'])->name('show-template');
 Route::post('/templates/create/{templateId}', [TemplateController::class, 'createTemplate'])->name('create-template');
 Route::post('/templates/download', [TemplateController::class, 'downloadTemplate'])->name('download-template');
 

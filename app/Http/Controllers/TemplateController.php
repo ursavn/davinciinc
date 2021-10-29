@@ -15,6 +15,10 @@ class TemplateController extends Controller
     {
         $category = Category::find($categoryId);
 
+        if (!$category) {
+            return redirect()->route('home');
+        }
+
         $templates = Template::where('category_id', $categoryId)->paginate(8);
 
         return view($this->dirView . 'index', [
@@ -23,17 +27,18 @@ class TemplateController extends Controller
         ]);
     }
 
-    public function showTemplate($id)
+    public function showTemplate($categoryId, $templateId)
     {
-        $template = Template::find($id);
+        $category = Category::find($categoryId);
+        $template = Template::find($templateId);
 
-        if ($template) {
-            $template->content = file_get_contents('storage/templates/html/' . $template->url);
-
-            return view($this->dirView . 'create', ['template' => $template]);
+        if (!$category || !$template) {
+            return redirect()->route('select-template-by-category', $categoryId);
         }
 
-        return redirect()->route('select-template');
+        $template->content = file_get_contents('storage/templates/html/' . $template->url);
+
+        return view($this->dirView . 'create', ['template' => $template]);
     }
 
     public function createTemplate($templateId, Request $request)
