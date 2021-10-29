@@ -3,9 +3,9 @@
 @section('content')
     <div class="select-template full-width">
         <div class="select-template__cover">
-            <div class="template-image"></div>
+            <div class="template-image" style='background-image: url("{{ asset('storage/categories/' . $category->img_url) }}")'></div>
             <div class="overlay">
-                <div class="center-text">迷子ペット用チラシ作成</div>
+                <div class="center-text">{{ $category->description }}</div>
             </div>
         </div>
     </div>

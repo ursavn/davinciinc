@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\UserTemplateController;
 use App\Http\Controllers\TemplateController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController as UserCategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,11 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.users.home');
-})->name('home');
+Route::get('/', [UserCategoryController::class, 'getAllCategories'])->name('home');
 
-Route::get('/templates', [TemplateController::class, 'getAllTemplates'])->name('select-template');
+Route::get('/templates/category/{categoryId}', [TemplateController::class, 'getTemplatesByCategory'])->name('select-template-by-category');
 Route::get('/templates/{id}', [TemplateController::class, 'showTemplate'])->name('show-template');
 Route::post('/templates/create/{templateId}', [TemplateController::class, 'createTemplate'])->name('create-template');
 Route::post('/templates/download', [TemplateController::class, 'downloadTemplate'])->name('download-template');

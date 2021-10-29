@@ -5,17 +5,21 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\UserTemplate;
+use App\Models\Category;
 
 class TemplateController extends Controller
 {
     protected $dirView = 'pages.users.template.';
 
-    public function getAllTemplates()
+    public function getTemplatesByCategory($categoryId)
     {
-        $templates = Template::paginate(8);
+        $category = Category::find($categoryId);
+
+        $templates = Template::where('category_id', $categoryId)->paginate(8);
 
         return view($this->dirView . 'index', [
-            'templates' => $templates
+            'templates' => $templates,
+            'category' => $category
         ]);
     }
 
