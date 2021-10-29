@@ -24,4 +24,9 @@
             </div>
         @endforeach
     </div>
+    <div class="d-flex justify-content-center mb-5">
+        @if ($templates->lastPage() > 1)
+        {{ $templates->render('includes.pagination') }}
+        @endif
+    </div>
 @endsection
