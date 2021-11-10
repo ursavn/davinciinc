@@ -3,7 +3,7 @@ services:
   # database
   db:
     container_name: davinciinc_db
-    image: mysql:8.0
+    image: mysql:5.7
     # restart: always
     # ports:
     #   - 3310:3306

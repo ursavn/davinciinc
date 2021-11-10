@@ -6,8 +6,8 @@ docker-compose up -d --build
 
 ```bash
 # Edit enviroment
-$ cp .env.example .env
-$ sudo vi .env
+cp .env.example .env
+sudo vi .env
 ```
 
 Change the database configuration as below.
@@ -23,18 +23,18 @@ Save and close.
 
 Next, install module, generate the Laravel application key and clear the cache configuration.
 ```bash
-$ sudo docker-compose exec app composer install
-$ sudo docker-compose exec app php artisan key:generate
-$ sudo docker-compose exec app php artisan config:clear
-$ sudo docker-compose exec app php artisan config:cache
-$ sudo docker-compose exec app php artisan optimize
+sudo docker-compose exec app composer install
+sudo docker-compose exec app php artisan key:generate
+sudo docker-compose exec app php artisan config:clear
+sudo docker-compose exec app php artisan config:cache
+sudo docker-compose exec app php artisan optimize
 ```
 
 # Database
 ```bash
 # Migrate
-docker-compose exec app php artisan migrate
+sudo docker-compose exec app php artisan migrate
 
 # Seeder
-docker-compose exec app php artisan db:seed
+sudo docker-compose exec app php artisan db:seed
 ```
