@@ -10,7 +10,7 @@ services:
     volumes:
       - davinciinc_data:/var/lib/postgresql/data
     environment:
-      MYSQL_ROOT_PASSWORD: Kullv9m7Y5
+      MYSQL_ROOT_PASSWORD: davinciinc
       MYSQL_DATABASE: davinciinc
 
   #PHP Service
@@ -20,18 +20,18 @@ services:
       dockerfile: Dockerfile
     container_name: davinciinc_app
     restart: unless-stopped
-    volumes: 
+    volumes:
       - ./:/var/www/html
     depends_on:
       - db
 
   #Nginx Service
-  webserver:
+  nginx:
     image: nginx:alpine
-    container_name: land_webserver
+    container_name: davinciinc_nginx
     restart: unless-stopped
     ports:
-      - ${MIDDLEWARE_PORT}:80
+      - 80:80
     volumes:
       - ./:/var/www/html
       - ./nginx.conf:/etc/nginx/conf.d/default.conf
