@@ -68,7 +68,6 @@
     </div>
 @endsection
 
-
 @push('scripts')
     <script>
         function readURL(input) {

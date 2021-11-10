@@ -3,9 +3,9 @@
 @section('content')
     <div class="select-template full-width">
         <div class="select-template__cover">
-            <div class="template-image"></div>
+            <div class="template-image" style='background-image: url("{{ asset('storage/categories/' . $category->img_url) }}")'></div>
             <div class="overlay">
-                <div class="center-text">迷子ペット用チラシ作成</div>
+                <div class="center-text">{{ $category->description }}</div>
             </div>
         </div>
     </div>
@@ -16,7 +16,7 @@
                 <div class="template-image" style='background-image: url("{{ asset('storage/templates/image/' . $template->img_url) }}")'></div>
                 <div class="overlay">
                     <button class="select-button">
-                        <a href="{{ route('show-template', $template->id) }}">
+                        <a href="{{ route('show-template', [$category->id, $template->id]) }}">
                             このテンプレートで作成する
                         </a>
                     </button>
