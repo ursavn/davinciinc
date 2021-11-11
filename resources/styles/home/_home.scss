@@ -11,22 +11,6 @@
         position: relative;
         width: 100%;
 
-        &:nth-child(1){
-            .type-image{
-                background-image: url("https://cdn.britannica.com/48/167648-050-E9902D71/Shiba-inu.jpg");
-            }
-        }
-        &:nth-child(2){
-            .type-image{
-                background-image: url("https://i.pinimg.com/originals/3b/c0/08/3bc008a7fd3695ebb48f1c599a7e8275.png");
-            }
-        }
-        &:nth-child(3){
-            .type-image{
-                background-image: url("https://i.pinimg.com/originals/c4/72/8c/c4728cc3b4f98be5b51c91fd01b30c06.jpg");
-            }
-        }
-
         .type-image{
             padding-top: 150%;
             background: var(--bgFirstScreen) no-repeat center/cover;
@@ -88,7 +72,7 @@
             margin-bottom: var(--rowSpace2);
         }
         @media(max-width: 1200px){
-            font-size: 18px;  
+            font-size: 18px;
         }
     }
 

@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequests\CreateRequest;
+use App\Http\Requests\CategoryRequests\EditRequest;
 use App\Models\Category;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Yajra\DataTables\Facades\DataTables;
@@ -35,6 +35,11 @@ class CategoryController extends Controller
         $categories = Category::with('creator', 'updater')->get();
 
         return DataTables::of($categories)
+            ->addColumn('img', function ($category) {
+                $path = "storage/categories/" . $category->img_url;
+
+                return '<img src="'. asset($path) .'" width="200px" height="120px"/>';
+            })
             ->addColumn('creator', function ($category) {
                 return $category->creator ? $category->creator->username : '';
             })
@@ -46,7 +51,7 @@ class CategoryController extends Controller
                             <i class="fa fa-edit"></i>
                         </a>';
             })
-            ->rawColumns(['creator', 'updated_by', 'action'])
+            ->rawColumns(['img', 'creator', 'updated_by', 'action'])
             ->make(true);
     }
 
@@ -70,6 +75,14 @@ class CategoryController extends Controller
     public function store(CreateRequest $request)
     {
         $data = $request->only(['name', 'description']);
+
+        if ($request->hasFile('img_url')) {
+            $fileName = $request->file('img_url')->getClientOriginalName();
+
+            $request->file('img_url')->storeAs(Config::get('constants.PATH.CATEGORY'), $fileName);
+
+            $data['img_url'] = $fileName;
+        }
 
         $data['created_by'] = Auth::user()->id;
 
@@ -115,7 +128,7 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CreateRequest $request, $id)
+    public function update(EditRequest $request, $id)
     {
         $category = Category::find($id);
 
@@ -124,6 +137,14 @@ class CategoryController extends Controller
         }
 
         $data = $request->only(['name', 'description']);
+
+        if ($request->hasFile('img_url')) {
+            $fileName = $request->file('img_url')->getClientOriginalName();
+
+            $request->file('img_url')->storeAs(Config::get('constants.PATH.CATEGORY'), $fileName);
+
+            $data['img_url'] = $fileName;
+        }
 
         $data['updated_by'] = Auth::user()->id;
 

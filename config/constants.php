@@ -7,5 +7,6 @@
                 'HTML' => 'templates/html',
                 'IMAGE' => 'templates/image',
             ],
+            'CATEGORY' => 'categories',
         ]
     ];

@@ -5,7 +5,7 @@
         <div class="c-header">
             <h2>Create Category</h2>
         </div>
-        <form action="{{ route('admin.categories.store') }}" method="post">
+        <form action="{{ route('admin.categories.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="c-content">
                 <div class="form-group">
@@ -13,6 +13,14 @@
                     <input type="text" name="name" class="form-control" placeholder="Category name">
                     @if ($errors->has('name'))
                         <span class="text-danger">{{ $errors->first('name') }}</span>
+                    @endif
+                </div>
+                <div class="form-group">
+                    <label>Template image <span class="text-danger">*</span></label>
+                    <div class="template-img"></div>
+                    <input type="file" class="form-control-file" name="img_url" onchange="readURL(this)" accept=".jpg,.png,.jpeg">
+                    @if ($errors->has('img_url'))
+                        <span class="text-danger">{{ $errors->first('img_url') }}</span>
                     @endif
                 </div>
                 <div class="form-group">
@@ -30,3 +38,17 @@
         </form>
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function () {
+                    $('.template-img').html('<img src="'+ reader.result +'" width="300px" class="mb-2" />');
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+@endpush

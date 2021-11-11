@@ -3,27 +3,15 @@
 @section('content')
     <div class="home full-width full-width--padding">
         <div class="home__type-select full-width">
-            <div class="home__image-button">
-                <div class="type-image"></div>
-                <div class="overlay">
-                    <div class="type-content center">迷子ペット</div>
-                    <a href="{{ route('select-template') }}" class="type-content bottom">> GO CREATE</a>
+            @foreach($categories as $category)
+                <div class="home__image-button">
+                    <div class="type-image" style='background-image: url("{{ asset('storage/categories/' . $category->img_url) }}")'></div>
+                    <div class="overlay">
+                        <div class="type-content center">{{ $category->name }}</div>
+                        <a href="{{ route('select-template-by-category', $category->id) }}" class="type-content bottom">> GO CREATE</a>
+                    </div>
                 </div>
-            </div>
-            <div class="home__image-button">
-                <div class="type-image"></div>
-                <div class="overlay">
-                    <div class="type-content center">保護ペット</div>
-                    <a href="{{ route('select-template') }}" class="type-content bottom">> GO CREATE</a>
-                </div>
-            </div>
-            <div class="home__image-button">
-                <div class="type-image"></div>
-                <div class="overlay">
-                    <div class="type-content center">里親募集</div>
-                    <a href="{{ route('select-template') }}" class="type-content bottom">> GO CREATE</a>
-                </div>
-            </div>
+            @endforeach
         </div>
 
         <div class="home__info">
