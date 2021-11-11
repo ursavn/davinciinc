@@ -28,6 +28,11 @@ sudo docker-compose exec app php artisan key:generate
 sudo docker-compose exec app php artisan config:clear
 sudo docker-compose exec app php artisan config:cache
 sudo docker-compose exec app php artisan optimize
+sudo docker-compose exec app php artisan storage:link
+```
+```bash
+sudo docker-compose exec app npm install
+sudo docker-compose exec app npm run dev
 ```
 
 # Database
