@@ -25,7 +25,7 @@ Route::get('/', [UserCategoryController::class, 'getAllCategories'])->name('home
 Route::get('/category/{categoryId}/templates', [TemplateController::class, 'getTemplatesByCategory'])->name('select-template-by-category');
 Route::get('/category/{categoryId}/templates/{templateId}', [TemplateController::class, 'showTemplate'])->name('show-template');
 Route::post('/templates/create/{templateId}', [TemplateController::class, 'createTemplate'])->name('create-template');
-Route::post('/templates/download', [TemplateController::class, 'downloadTemplate'])->name('download-template');
+Route::get('/templates/download/{userTemplateId}', [TemplateController::class, 'downloadTemplate'])->name('download-template');
 
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::name('auth.')->group(function () {
