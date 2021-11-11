@@ -36,7 +36,8 @@
             encode: true,
         }).done(function (data) {
             if (data.status === 200) {
-                postRedirect(JSON.stringify(data.content));
+                let action = '{{ url('templates/download') }}' + '/' + data.id;
+                window.location.replace(action);
             } else if (data.status === 500) {
                 alert(data.message);
             }
@@ -47,8 +48,8 @@
 
     function postRedirect(content) {
         let mapForm = document.createElement("form");
-        mapForm.method = "POST";
         mapForm.action = '{{ url('templates/download') }}';
+        mapForm.method = "POST";
 
         let mapToken = document.createElement("input");
         mapToken.type = "hidden";
@@ -69,6 +70,8 @@
         mapForm.appendChild(mapContent);
 
         document.body.appendChild(mapForm);
+
+        console.log(mapForm);
 
         mapForm.submit();
     }
