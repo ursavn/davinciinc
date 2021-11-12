@@ -19,14 +19,14 @@
                 </div>
                 <div class="form-group">
                     <label>Username <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="username" value="{{ old('username') }}" placeholder="Username">
+                    <input type="text" class="form-control" name="username" placeholder="Username">
                     @if ($errors->has('username'))
                         <span class="text-danger">{{ $errors->first('username') }}</span>
                     @endif
                 </div>
                 <div class="form-group">
                     <label>Email <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" name="email" value="{{ old('email') }}" placeholder="Email">
+                    <input type="text" class="form-control" name="email" placeholder="Email">
                     @if ($errors->has('email'))
                         <span class="text-danger">{{ $errors->first('email') }}</span>
                     @endif

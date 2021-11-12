@@ -47,16 +47,14 @@ class TemplateController extends Controller
 
         if ($template) {
             unset($request['_token']);
-            $htmlUrl = $request->html_url;
-
-            UserTemplate::create([
+            $result = UserTemplate::create([
                 'template_id' => $templateId,
                 'content' => json_encode($request->content),
             ]);
 
             return response([
                 'status' => 200,
-                'content' => $request->content
+                'id' => $result->id
             ]);
         }
 
@@ -66,13 +64,17 @@ class TemplateController extends Controller
         ]);
     }
 
-    public function downloadTemplate(Request $request)
+    public function downloadTemplate($userTemplateId)
     {
-        $html = file_get_contents('storage/templates/html/' . $request->html_url);
+        $userTemplate = UserTemplate::with('template')->find($userTemplateId);
 
-        return view($this->dirView . 'download', [
-            'html' => $html,
-            'content' => $request->content
-        ]);
+        if ($userTemplate) {
+            $html = file_get_contents('storage/templates/html/' . $userTemplate->template->url);
+
+            return view($this->dirView . 'download', [
+                'html' => $html,
+                'content' => $userTemplate->content
+            ]);
+        }
     }
 }

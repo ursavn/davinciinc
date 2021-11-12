@@ -18,7 +18,7 @@
             var element = document.getElementById('template');
 
             var opt = {
-                filename: 'myfile.pdf',
+                filename: 'file.pdf',
                 html2canvas: {
                     scale: 2,
                     scrollY: 0,

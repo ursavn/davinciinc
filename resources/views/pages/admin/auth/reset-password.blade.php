@@ -52,7 +52,8 @@
         }).done(function (data) {
             if (data.status === 200) {
                 $('#resetPasswordModal').modal('hide');
-                // alert(data.message);
+                alert(data.message);
+                window.location.replace('{{ url('admin/logout') }}');
             } else if (data.status === 422) {
                 resetMessageErr();
 

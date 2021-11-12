@@ -36,41 +36,14 @@
             encode: true,
         }).done(function (data) {
             if (data.status === 200) {
-                postRedirect(JSON.stringify(data.content));
+                let action = '{{ url('templates/download') }}' + '/' + data.id;
+                window.location.replace(action);
             } else if (data.status === 500) {
                 alert(data.message);
             }
         })
 
-            event.preventDefault();
-        }
-
-    function postRedirect(content) {
-        let mapForm = document.createElement("form");
-        mapForm.method = "POST";
-        mapForm.action = '{{ url('templates/download') }}';
-
-        let mapToken = document.createElement("input");
-        mapToken.type = "hidden";
-        mapToken.name = "_token";
-        mapToken.value = '{{ csrf_token() }}';
-        mapForm.appendChild(mapToken);
-
-        let mapHtmlUrl = document.createElement("input");
-        mapHtmlUrl.type = "hidden";
-        mapHtmlUrl.name = "html_url";
-        mapHtmlUrl.value = '{{ $template->url }}';
-        mapForm.appendChild(mapHtmlUrl);
-
-        let mapContent = document.createElement("input");
-        mapContent.type = "hidden";
-        mapContent.name = "content";
-        mapContent.value = content
-        mapForm.appendChild(mapContent);
-
-        document.body.appendChild(mapForm);
-
-        mapForm.submit();
+        event.preventDefault();
     }
 
     $(window).on('load', function() {

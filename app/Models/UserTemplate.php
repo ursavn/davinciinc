@@ -18,6 +18,7 @@ class UserTemplate extends Model
         'template_id',
         'content',
         'created_at',
+        'updated_at',
     ];
 
     public function getCreatedAtAttribute($value)

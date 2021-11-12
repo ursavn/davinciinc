@@ -203,7 +203,10 @@ class UserController extends Controller
             'password' => $newPassword
         ]);
 
-        return response(['status' => 200]);
+        return response([
+            'status' => 200,
+            'message' => 'Password changed successfully.'
+        ]);
     }
 
     /**
