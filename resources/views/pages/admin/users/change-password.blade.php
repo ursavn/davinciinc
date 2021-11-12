@@ -51,6 +51,7 @@
         }).done(function (data) {
             if (data.status === 200) {
                 $('#changePasswordModal').modal('hide');
+                alert(data.message)
             } else if (data.status === 422) {
                 resetMessageErr();
 

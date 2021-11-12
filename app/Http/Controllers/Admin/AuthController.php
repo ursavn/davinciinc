@@ -104,7 +104,7 @@ class AuthController extends Controller
 
         return response([
             'status' => 200,
-            'message' => 'Password changed successfully. Please log in again.'
+            'message' => 'Password changed successfully. Please login again.'
         ]);
     }
 }
