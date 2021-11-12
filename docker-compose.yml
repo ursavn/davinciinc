@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+  # database
+  db:
+    container_name: davinciinc_db
+    image: mysql:5.7
+    # restart: always
+    # ports:
+    #   - 3310:3306
+    volumes:
+      - davinciinc_data:/var/lib/postgresql/data
+    environment:
+      MYSQL_ROOT_PASSWORD: davinciinc
+      MYSQL_DATABASE: davinciinc
+
+  #PHP Service
+  app:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: davinciinc_app
+    restart: unless-stopped
+    volumes:
+      - ./:/var/www/html
+    depends_on:
+      - db
+
+  #Nginx Service
+  nginx:
+    image: nginx:alpine
+    container_name: davinciinc_nginx
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www/html
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app  
+
+volumes:
+  davinciinc_data:
