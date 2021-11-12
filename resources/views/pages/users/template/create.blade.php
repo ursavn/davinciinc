@@ -30,7 +30,6 @@
             data: {
                 "_token": "{{ csrf_token() }}",
                 "content": data,
-                "html_url": '{{ $template->url }}',
             },
             dataType: "json",
             encode: true,

@@ -46,10 +46,19 @@ class TemplateController extends Controller
         $template = Template::find($templateId);
 
         if ($template) {
-            unset($request['_token']);
+            $content = $request['content'];
+
+            foreach ($content as $key => $val) {
+                if ($val['value'] !== null) {
+                    $value = str_replace("\n", " ", $val['value']);
+
+                    $content[$key]['value'] = $value;
+                }
+            }
+
             $result = UserTemplate::create([
                 'template_id' => $templateId,
-                'content' => json_encode($request->content),
+                'content' => json_encode($content),
             ]);
 
             return response([
